@@ -1277,9 +1277,6 @@ def generate_single_timeframe_projection(client_id: str, timeframe: str, financi
             temperature=0.0,  # ← DETERMINISTIC: Same input = Same output
             top_p=1.0,        # ← Use all possible tokens
             top_k=1,          # ← Always pick most likely token
-            thinking_config=types.ThinkingConfig(
-                thinking_budget=32768
-            ),
             system_instruction=prompt,
         )
 
@@ -2156,9 +2153,6 @@ CONFIDENCE SCORING VALIDATION:
             temperature=0.0,  # ← DETERMINISTIC: Same input = Same output
             top_p=1.0,        # ← Use all possible tokens
             top_k=1,          # ← Always pick most likely token
-            thinking_config=types.ThinkingConfig(
-                thinking_budget=32768  
-            ),
             system_instruction=full_prompt,
         )
         

@@ -6,6 +6,7 @@ google-genai==0.8.0
 google-auth==2.35.0
 google-auth-oauthlib==1.2.0
 google-auth-httplib2==0.2.0
+google-cloud-aiplatform==1.38.0
 azure-storage-blob==12.19.1
 psycopg2-binary==2.9.9
 mammoth==1.6.0
