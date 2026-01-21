@@ -1,13 +1,2 @@
 #!/bin/bash
-# Azure App Service startup script for Financial Projection Backend
-
-echo "Starting Financial Projection Backend on Azure..."
-
-# Set Python path
-export PYTHONPATH="${PYTHONPATH}:/home/site/wwwroot"
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Start the FastAPI application
-python -m uvicorn "BACKABLE NEW INFRASTRUCTURE FINANCIAL PROJECTION:app" --host 0.0.0.0 --port 8000
+gunicorn -w 4 -k uvicorn.workers.UvicornWorker "BACKABLE NEW INFRASTRUCTURE FINANCIAL PROJECTION:app" --bind 0.0.0.0:8000 --timeout 3600 --access-logfile '-' --error-logfile '-' --log-level info
