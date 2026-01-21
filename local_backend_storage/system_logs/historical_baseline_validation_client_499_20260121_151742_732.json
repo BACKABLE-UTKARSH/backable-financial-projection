@@ -1,0 +1,35 @@
+{
+  "metadata": {
+    "timestamp": "2026-01-21T15:17:42.732694",
+    "client_id": "499",
+    "category": "system_logs",
+    "filename_prefix": "historical_baseline_validation",
+    "data_type": "dict",
+    "additional_info": null,
+    "file_size_estimate": 752
+  },
+  "content": {
+    "client_id": "499",
+    "historical_baseline_validation": {
+      "current_annual_revenue": 502348.93,
+      "current_annual_expenses": 635844.12,
+      "current_annual_net_profit": -178105.19,
+      "current_annual_gross_profit": 457738.93,
+      "baseline_period": "12 months ending October 2025 (annualized from 10 months YTD)",
+      "revenue_growth_rate": -8.21,
+      "expense_inflation_rate": -11.69,
+      "profit_margin_trend": -15.01
+    },
+    "cagr_validation": {
+      "client_id": "499",
+      "baseline_revenue_growth_rate": -8.21,
+      "baseline_expense_inflation_rate": -11.69,
+      "methodology_revenue_cagr": -8.21,
+      "methodology_expense_inflation": -11.69,
+      "cagr_match": true,
+      "validation_timestamp": "2026-01-21T15:17:42.729428"
+    },
+    "validation_status": "SUCCESS",
+    "validation_timestamp": "2026-01-21T15:17:42.731098"
+  }
+}

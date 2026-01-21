@@ -1,0 +1,18 @@
+{
+  "metadata": {
+    "timestamp": "2026-01-21T15:33:48.376200",
+    "client_id": "499",
+    "category": "errors",
+    "filename_prefix": "http_exception",
+    "data_type": "dict",
+    "additional_info": null,
+    "file_size_estimate": 167
+  },
+  "content": {
+    "client_id": "499",
+    "error_type": "http_exception",
+    "status_code": 500,
+    "detail": "Failed to get response from AI service",
+    "timestamp": "2026-01-21T15:33:48.371351"
+  }
+}

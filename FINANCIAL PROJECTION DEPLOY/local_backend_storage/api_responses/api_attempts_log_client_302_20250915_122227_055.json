@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "timestamp": "2025-09-15T12:22:27.055672",
+    "client_id": "302",
+    "category": "api_responses",
+    "filename_prefix": "api_attempts_log",
+    "data_type": "dict",
+    "additional_info": null,
+    "file_size_estimate": 347
+  },
+  "content": {
+    "client_id": "302",
+    "max_retries": 3,
+    "attempts": [
+      {
+        "attempt_number": 1,
+        "api_key_index": 6,
+        "start_time": "2025-09-15T12:19:43.883143",
+        "status": "success",
+        "end_time": "2025-09-15T12:22:27.055672",
+        "duration_seconds": 163.172529
+      }
+    ],
+    "start_time": "2025-09-15T12:19:43.883143",
+    "end_time": "2025-09-15T12:22:27.055672",
+    "final_status": "success"
+  }
+}

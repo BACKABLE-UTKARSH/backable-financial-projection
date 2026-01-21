@@ -1,0 +1,763 @@
+{
+  "metadata": {
+    "timestamp": "2026-01-21T11:50:01.480938",
+    "client_id": "499",
+    "category": "final_results",
+    "filename_prefix": "validated_projection",
+    "data_type": "dict",
+    "additional_info": null,
+    "file_size_estimate": 16554
+  },
+  "content": {
+    "client_id": "499",
+    "business_name": "PhilotimoGlobal",
+    "completion_score": 1.0,
+    "data_quality_score": 0.3,
+    "projection_confidence_score": 0.4,
+    "total_projections_generated": {
+      "monthly_1_year": 12,
+      "monthly_3_years": 36,
+      "quarterly_5_years": 20,
+      "annual_10_years": 10,
+      "annual_15_years": 15
+    },
+    "validation_timestamp": "2026-01-21T11:50:01.478936",
+    "full_validated_projection": {
+      "executive_summary": "This projection for PhilotimoGlobal is based on a data-driven turnaround scenario. The historical data from 2023-2025 shows a business in significant distress, with declining revenue and substantial, unsustainable net losses. A direct extrapolation of these trends would result in business failure. Therefore, this forecast models a realistic recovery path, assuming decisive management action to control costs and stabilize revenue. The projection shows continued losses for the next seven years, but with a clear, aggressive trend of improvement, culminating in a return to profitability in Year 8. The forecast's viability is entirely contingent on the successful implementation of significant operational and financial restructuring.",
+      "business_name": "PhilotimoGlobal",
+      "completion_score": {
+        "score": 1.0,
+        "rationale": "All required fields in the schema have been populated based on the provided financial documents."
+      },
+      "data_quality_score": {
+        "score": 0.3,
+        "rationale": "The provided data is extremely sparse, consisting of only three annual data points for a single month (October) and a YTD summary, which is insufficient for robust time-series analysis or seasonality detection."
+      },
+      "projection_confidence_score": {
+        "score": 0.4,
+        "rationale": "Confidence is low due to the sparse historical data and the projection's heavy reliance on a modeled turnaround scenario rather than the continuation of a stable, historical trend."
+      },
+      "historical_baseline": {
+        "current_annual_revenue": 502348.93,
+        "current_annual_expenses": 638706.17,
+        "current_annual_net_profit": -180967.24,
+        "current_annual_gross_profit": 457738.93,
+        "baseline_period": "Last 12 months (estimated) ending October 2025",
+        "revenue_growth_rate": -0.0817,
+        "expense_inflation_rate": -0.2996,
+        "profit_margin_trend": -0.3602
+      },
+      "projection_drivers_found": [
+        "Accelerating Year-Over-Year Revenue Decline: Revenue in October fell 5.2% from 2023 to 2024, and fell a further 11.1% from 2024 to 2025, indicating a negative trend.",
+        "Unsustainable Expense Structure: The baseline expense-to-revenue ratio, calculated from YTD 2025 data, is 127.1%, leading to significant operational losses.",
+        "Recent Cost-Cutting Efforts: A sharp drop in operating expenses in Oct 2025 compared to Oct 2024 suggests a recent, active effort to reduce costs, which forms the basis for the turnaround model."
+      ],
+      "assumptions_made": [
+        "Baseline figures are extrapolated from the 10-month 'Year To Date' data ending Oct 2025 to create a full 12-month equivalent.",
+        "This projection models a 'turnaround scenario' assuming management takes corrective action. A straight extrapolation of historical trends would show terminal decline.",
+        "Revenue is projected to decline by 5% in Year 1, stabilize in Year 2, and then grow at a modest 3% annually, reflecting a successful effort to stop the decline.",
+        "The expense-to-revenue ratio is assumed to improve significantly due to aggressive cost-cutting, starting at 127.1% and decreasing annually to a sustainable level of 89.1%.",
+        "The Gross Profit Margin is held constant at the historical YTD 2025 level of 91.12%.",
+        "Monthly and quarterly projections are derived by evenly distributing the annual forecast, as no historical seasonality data is available."
+      ],
+      "anomalies_found": [
+        "A non-current asset, 'Backable Pty Ltd', is listed with a negative value (-$87,645.84) on the 2025 Balance Sheet, which is highly irregular and may indicate a misclassified liability.",
+        "Extreme volatility in monthly operating expenses between 2024 and 2025 suggests a structural break in the business's cost management strategy."
+      ],
+      "methodology": {
+        "forecasting_methods_used": [
+          "Trend Analysis",
+          "Ratio Analysis (Expense-to-Revenue)"
+        ],
+        "seasonal_adjustments_applied": false,
+        "trend_analysis_period": "October 2023 to October 2025",
+        "growth_rate_assumptions": {
+          "revenue_cagr": 0.021,
+          "expense_inflation": 0.003,
+          "profit_margin_target": 0.0202
+        }
+      },
+      "projections_data": {
+        "one_year_monthly": [
+          {
+            "month": "2026-01",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-02",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-03",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-04",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-05",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-06",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-07",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-08",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-09",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-10",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-11",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-12",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          }
+        ],
+        "three_years_monthly": [
+          {
+            "month": "2026-01",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-02",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-03",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-04",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-05",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-06",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-07",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-08",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-09",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-10",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-11",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2026-12",
+            "revenue": 39769.29,
+            "net_profit": -11128.25,
+            "gross_profit": 36236.97,
+            "expenses": 47365.22
+          },
+          {
+            "month": "2027-01",
+            "revenue": 39769.29,
+            "net_profit": -8742.18,
+            "gross_profit": 36236.97,
+            "expenses": 44979.15
+          },
+          {
+            "month": "2027-02",
+            "revenue": 39769.29,
+            "net_profit": -8742.18,
+            "gross_profit": 36236.97,
+            "expenses": 44979.15
+          },
+          {
+            "month": "2027-03",
+            "revenue": 39769.29,
+            "net_profit": -8742.18,
+            "gross_profit": 36236.97,
+            "expenses": 44979.15
+          },
+          {
+            "month": "2027-04",
+            "revenue": 39769.29,
+            "net_profit": -8742.18,
+            "gross_profit": 36236.97,
+            "expenses": 44979.15
+          },
+          {
+            "month": "2027-05",
+            "revenue": 39769.29,
+            "net_profit": -8742.18,
+            "gross_profit": 36236.97,
+            "expenses": 44979.15
+          },
+          {
+            "month": "2027-06",
+            "revenue": 39769.29,
+            "net_profit": -8742.18,
+            "gross_profit": 36236.97,
+            "expenses": 44979.15
+          },
+          {
+            "month": "2027-07",
+            "revenue": 39769.29,
+            "net_profit": -8742.18,
+            "gross_profit": 36236.97,
+            "expenses": 44979.15
+          },
+          {
+            "month": "2027-08",
+            "revenue": 39769.29,
+            "net_profit": -8742.18,
+            "gross_profit": 36236.97,
+            "expenses": 44979.15
+          },
+          {
+            "month": "2027-09",
+            "revenue": 39769.29,
+            "net_profit": -8742.18,
+            "gross_profit": 36236.97,
+            "expenses": 44979.15
+          },
+          {
+            "month": "2027-10",
+            "revenue": 39769.29,
+            "net_profit": -8742.18,
+            "gross_profit": 36236.97,
+            "expenses": 44979.15
+          },
+          {
+            "month": "2027-11",
+            "revenue": 39769.29,
+            "net_profit": -8742.18,
+            "gross_profit": 36236.97,
+            "expenses": 44979.15
+          },
+          {
+            "month": "2027-12",
+            "revenue": 39769.29,
+            "net_profit": -8742.18,
+            "gross_profit": 36236.97,
+            "expenses": 44979.15
+          },
+          {
+            "month": "2028-01",
+            "revenue": 40962.37,
+            "net_profit": -7363.5,
+            "gross_profit": 37324.08,
+            "expenses": 44687.58
+          },
+          {
+            "month": "2028-02",
+            "revenue": 40962.37,
+            "net_profit": -7363.5,
+            "gross_profit": 37324.08,
+            "expenses": 44687.58
+          },
+          {
+            "month": "2028-03",
+            "revenue": 40962.37,
+            "net_profit": -7363.5,
+            "gross_profit": 37324.08,
+            "expenses": 44687.58
+          },
+          {
+            "month": "2028-04",
+            "revenue": 40962.37,
+            "net_profit": -7363.5,
+            "gross_profit": 37324.08,
+            "expenses": 44687.58
+          },
+          {
+            "month": "2028-05",
+            "revenue": 40962.37,
+            "net_profit": -7363.5,
+            "gross_profit": 37324.08,
+            "expenses": 44687.58
+          },
+          {
+            "month": "2028-06",
+            "revenue": 40962.37,
+            "net_profit": -7363.5,
+            "gross_profit": 37324.08,
+            "expenses": 44687.58
+          },
+          {
+            "month": "2028-07",
+            "revenue": 40962.37,
+            "net_profit": -7363.5,
+            "gross_profit": 37324.08,
+            "expenses": 44687.58
+          },
+          {
+            "month": "2028-08",
+            "revenue": 40962.37,
+            "net_profit": -7363.5,
+            "gross_profit": 37324.08,
+            "expenses": 44687.58
+          },
+          {
+            "month": "2028-09",
+            "revenue": 40962.37,
+            "net_profit": -7363.5,
+            "gross_profit": 37324.08,
+            "expenses": 44687.58
+          },
+          {
+            "month": "2028-10",
+            "revenue": 40962.37,
+            "net_profit": -7363.5,
+            "gross_profit": 37324.08,
+            "expenses": 44687.58
+          },
+          {
+            "month": "2028-11",
+            "revenue": 40962.37,
+            "net_profit": -7363.5,
+            "gross_profit": 37324.08,
+            "expenses": 44687.58
+          },
+          {
+            "month": "2028-12",
+            "revenue": 40962.37,
+            "net_profit": -7363.5,
+            "gross_profit": 37324.08,
+            "expenses": 44687.58
+          }
+        ],
+        "five_years_quarterly": [
+          {
+            "quarter": "2026-Q1",
+            "revenue": 119307.87,
+            "net_profit": -33384.75,
+            "gross_profit": 108710.92,
+            "expenses": 142095.67
+          },
+          {
+            "quarter": "2026-Q2",
+            "revenue": 119307.87,
+            "net_profit": -33384.75,
+            "gross_profit": 108710.92,
+            "expenses": 142095.67
+          },
+          {
+            "quarter": "2026-Q3",
+            "revenue": 119307.87,
+            "net_profit": -33384.75,
+            "gross_profit": 108710.92,
+            "expenses": 142095.67
+          },
+          {
+            "quarter": "2026-Q4",
+            "revenue": 119307.87,
+            "net_profit": -33384.75,
+            "gross_profit": 108710.92,
+            "expenses": 142095.67
+          },
+          {
+            "quarter": "2027-Q1",
+            "revenue": 119307.87,
+            "net_profit": -26226.53,
+            "gross_profit": 108710.92,
+            "expenses": 134937.45
+          },
+          {
+            "quarter": "2027-Q2",
+            "revenue": 119307.87,
+            "net_profit": -26226.53,
+            "gross_profit": 108710.92,
+            "expenses": 134937.45
+          },
+          {
+            "quarter": "2027-Q3",
+            "revenue": 119307.87,
+            "net_profit": -26226.53,
+            "gross_profit": 108710.92,
+            "expenses": 134937.45
+          },
+          {
+            "quarter": "2027-Q4",
+            "revenue": 119307.87,
+            "net_profit": -26226.53,
+            "gross_profit": 108710.92,
+            "expenses": 134937.45
+          },
+          {
+            "quarter": "2028-Q1",
+            "revenue": 122887.11,
+            "net_profit": -22090.5,
+            "gross_profit": 111972.25,
+            "expenses": 134062.75
+          },
+          {
+            "quarter": "2028-Q2",
+            "revenue": 122887.11,
+            "net_profit": -22090.5,
+            "gross_profit": 111972.25,
+            "expenses": 134062.75
+          },
+          {
+            "quarter": "2028-Q3",
+            "revenue": 122887.11,
+            "net_profit": -22090.5,
+            "gross_profit": 111972.25,
+            "expenses": 134062.75
+          },
+          {
+            "quarter": "2028-Q4",
+            "revenue": 122887.11,
+            "net_profit": -22090.5,
+            "gross_profit": 111972.25,
+            "expenses": 134062.75
+          },
+          {
+            "quarter": "2029-Q1",
+            "revenue": 126573.72,
+            "net_profit": -17692.5,
+            "gross_profit": 115331.42,
+            "expenses": 133023.92
+          },
+          {
+            "quarter": "2029-Q2",
+            "revenue": 126573.72,
+            "net_profit": -17692.5,
+            "gross_profit": 115331.42,
+            "expenses": 133023.92
+          },
+          {
+            "quarter": "2029-Q3",
+            "revenue": 126573.72,
+            "net_profit": -17692.5,
+            "gross_profit": 115331.42,
+            "expenses": 133023.92
+          },
+          {
+            "quarter": "2029-Q4",
+            "revenue": 126573.72,
+            "net_profit": -17692.5,
+            "gross_profit": 115331.42,
+            "expenses": 133023.92
+          },
+          {
+            "quarter": "2030-Q1",
+            "revenue": 130370.93,
+            "net_profit": -13008.5,
+            "gross_profit": 118791.36,
+            "expenses": 131799.86
+          },
+          {
+            "quarter": "2030-Q2",
+            "revenue": 130370.93,
+            "net_profit": -13008.5,
+            "gross_profit": 118791.36,
+            "expenses": 131799.86
+          },
+          {
+            "quarter": "2030-Q3",
+            "revenue": 130370.93,
+            "net_profit": -13008.5,
+            "gross_profit": 118791.36,
+            "expenses": 131799.86
+          },
+          {
+            "quarter": "2030-Q4",
+            "revenue": 130370.93,
+            "net_profit": -13008.5,
+            "gross_profit": 118791.36,
+            "expenses": 131799.86
+          }
+        ],
+        "ten_years_annual": [
+          {
+            "year": 2026,
+            "revenue": 477231.48,
+            "net_profit": -133539.01,
+            "gross_profit": 434843.69,
+            "expenses": 568382.7
+          },
+          {
+            "year": 2027,
+            "revenue": 477231.48,
+            "net_profit": -104906.12,
+            "gross_profit": 434843.69,
+            "expenses": 539749.81
+          },
+          {
+            "year": 2028,
+            "revenue": 491548.42,
+            "net_profit": -88362.0,
+            "gross_profit": 447889.0,
+            "expenses": 536251.0
+          },
+          {
+            "year": 2029,
+            "revenue": 506294.87,
+            "net_profit": -70770.0,
+            "gross_profit": 461325.67,
+            "expenses": 532095.67
+          },
+          {
+            "year": 2030,
+            "revenue": 521483.72,
+            "net_profit": -52034.0,
+            "gross_profit": 475165.44,
+            "expenses": 527199.44
+          },
+          {
+            "year": 2031,
+            "revenue": 537128.23,
+            "net_profit": -32109.0,
+            "gross_profit": 489420.4,
+            "expenses": 521529.4
+          },
+          {
+            "year": 2032,
+            "revenue": 553242.08,
+            "net_profit": -10943.0,
+            "gross_profit": 504103.02,
+            "expenses": 515046.02
+          },
+          {
+            "year": 2033,
+            "revenue": 569839.34,
+            "net_profit": 11523.0,
+            "gross_profit": 519226.11,
+            "expenses": 507703.11
+          },
+          {
+            "year": 2034,
+            "revenue": 586934.52,
+            "net_profit": 11856.0,
+            "gross_profit": 534802.89,
+            "expenses": 522946.89
+          },
+          {
+            "year": 2035,
+            "revenue": 604542.56,
+            "net_profit": 12212.0,
+            "gross_profit": 550846.98,
+            "expenses": 538634.98
+          }
+        ],
+        "fifteen_years_annual": [
+          {
+            "year": 2026,
+            "revenue": 477231.48,
+            "net_profit": -133539.01,
+            "gross_profit": 434843.69,
+            "expenses": 568382.7
+          },
+          {
+            "year": 2027,
+            "revenue": 477231.48,
+            "net_profit": -104906.12,
+            "gross_profit": 434843.69,
+            "expenses": 539749.81
+          },
+          {
+            "year": 2028,
+            "revenue": 491548.42,
+            "net_profit": -88362.0,
+            "gross_profit": 447889.0,
+            "expenses": 536251.0
+          },
+          {
+            "year": 2029,
+            "revenue": 506294.87,
+            "net_profit": -70770.0,
+            "gross_profit": 461325.67,
+            "expenses": 532095.67
+          },
+          {
+            "year": 2030,
+            "revenue": 521483.72,
+            "net_profit": -52034.0,
+            "gross_profit": 475165.44,
+            "expenses": 527199.44
+          },
+          {
+            "year": 2031,
+            "revenue": 537128.23,
+            "net_profit": -32109.0,
+            "gross_profit": 489420.4,
+            "expenses": 521529.4
+          },
+          {
+            "year": 2032,
+            "revenue": 553242.08,
+            "net_profit": -10943.0,
+            "gross_profit": 504103.02,
+            "expenses": 515046.02
+          },
+          {
+            "year": 2033,
+            "revenue": 569839.34,
+            "net_profit": 11523.0,
+            "gross_profit": 519226.11,
+            "expenses": 507703.11
+          },
+          {
+            "year": 2034,
+            "revenue": 586934.52,
+            "net_profit": 11856.0,
+            "gross_profit": 534802.89,
+            "expenses": 522946.89
+          },
+          {
+            "year": 2035,
+            "revenue": 604542.56,
+            "net_profit": 12212.0,
+            "gross_profit": 550846.98,
+            "expenses": 538634.98
+          },
+          {
+            "year": 2036,
+            "revenue": 622678.84,
+            "net_profit": 12578.0,
+            "gross_profit": 567372.39,
+            "expenses": 554794.39
+          },
+          {
+            "year": 2037,
+            "revenue": 641359.21,
+            "net_profit": 12955.0,
+            "gross_profit": 584393.56,
+            "expenses": 571438.56
+          },
+          {
+            "year": 2038,
+            "revenue": 660600.0,
+            "net_profit": 13344.0,
+            "gross_profit": 601925.37,
+            "expenses": 588581.37
+          },
+          {
+            "year": 2039,
+            "revenue": 680418.0,
+            "net_profit": 13744.0,
+            "gross_profit": 619983.13,
+            "expenses": 606239.13
+          },
+          {
+            "year": 2040,
+            "revenue": 700830.54,
+            "net_profit": 14156.0,
+            "gross_profit": 638582.62,
+            "expenses": 624426.62
+          }
+        ]
+      },
+      "key_financial_ratios": {
+        "gross_margin": 0.9112,
+        "net_margin": -0.3602,
+        "current_ratio": 0.927,
+        "debt_to_equity": 0.5045
+      },
+      "risk_factors": [
+        "Execution Risk: The entire projection is contingent on a successful and aggressive operational turnaround, which may be difficult to execute.",
+        "Liquidity Crisis: With a current ratio below 1.0, the company faces immediate risk of being unable to meet its short-term obligations without external financing.",
+        "Sustained Unprofitability: The model projects seven more years of net losses. The business must have sufficient capital reserves or financing to survive this extended recovery period.",
+        "Market Conditions: The projection assumes the revenue decline can be halted and reversed. A continued negative market trend could make recovery impossible."
+      ],
+      "recommendations": [
+        "Immediately implement an aggressive cost-reduction plan, focusing on the largest expense categories identified in the historical data: wages, rent, and subscriptions.",
+        "Secure a line of credit or shareholder capital injection to address the immediate working capital deficit and ensure operational continuity.",
+        "Develop a detailed strategic plan to stabilize and grow core revenue streams, focusing on the most profitable services.",
+        "Establish rigorous monthly budget reviews to track performance against this turnaround plan and make rapid adjustments as needed."
+      ]
+    }
+  }
+}

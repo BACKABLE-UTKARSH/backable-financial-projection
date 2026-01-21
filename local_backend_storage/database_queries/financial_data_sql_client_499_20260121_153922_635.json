@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "timestamp": "2026-01-21T15:39:22.635815",
+    "client_id": "499",
+    "category": "database_queries",
+    "filename_prefix": "financial_data_sql",
+    "data_type": "dict",
+    "additional_info": null,
+    "file_size_estimate": 378
+  },
+  "content": {
+    "sql": "\n                SELECT id, original_name, category, \n                       extracted_data, gemini_analysis, financial_ratios, analysis_metadata\n                FROM finance_documents \n                WHERE user_id = %s \n                ORDER BY id\n            ",
+    "client_id": "499",
+    "operation": "fetch_finance_documents",
+    "database": "BACKABLE-FINANCE-ENGINE"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "timestamp": "2025-09-15T12:19:43.631417",
+    "client_id": "302",
+    "category": "database_queries",
+    "filename_prefix": "financial_data_request",
+    "data_type": "dict",
+    "additional_info": null,
+    "file_size_estimate": 151
+  },
+  "content": {
+    "client_id": "302",
+    "operation": "get_financial_data_from_database",
+    "timestamp": "2025-09-15T12:19:43.629143",
+    "database": "BACKABLE-FINANCE-ENGINE"
+  }
+}

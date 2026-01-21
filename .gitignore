@@ -1,0 +1,81 @@
+# ======================================================
+#           Environment Variables & Credentials
+# ======================================================
+.env
+*.env
+!.env.example
+vertex-key.json
+service-account.json
+credentials.json
+*-creds.json
+
+# ======================================================
+#           Python
+# ======================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ======================================================
+#           Virtual Environments
+# ======================================================
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+dream_analyzer_env/
+profile_engine_env/
+
+# ======================================================
+#           IDEs and Editors
+# ======================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ======================================================
+#           Logs and Temporary Files
+# ======================================================
+*.log
+logs/
+*.tmp
+*.temp
+nul
+
+# ======================================================
+#           Azure and Deployment
+# ======================================================
+publish-profile.xml
+*.publishsettings
+deployment-creds.xml
+
+# ======================================================
+#           Local Storage
+# ======================================================
+projection_storage/
+local_data/
+cache/

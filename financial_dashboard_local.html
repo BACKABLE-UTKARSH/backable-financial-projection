@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Dashboard - BACKABLE (Local)</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: radial-gradient(circle at bottom, #ffe4c4, white 95%);
+            backdrop-filter: blur(10px);
+            color: #374151;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-top: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-info {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #dbeafe;
+            border: 1px solid #93c5fd;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .timeline-info-title {
+            color: #1e40af;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .timeline-info-subtitle {
+            color: #2563eb;
+            font-size: 0.75rem;
+            margin-top: 2px;
+        }
+
+        /* Timeline Selector */
+        .timeline-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .timeline-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 4px;
+        }
+
+        .timeline-subtitle {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 16px;
+        }
+
+        .timeline-selector {
+            display: inline-flex;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            padding: 4px;
+        }
+
+        .timeline-button {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: #6b7280;
+        }
+
+        .timeline-button:hover {
+            color: #ea580c;
+            background-color: #fed7aa;
+        }
+
+        .timeline-button.active {
+            background-color: #f97316;
+            color: white;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-description {
+            text-align: center;
+            margin-top: 8px;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .finance-section {
+            background-color: #1e293b;
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid #374151;
+        }
+
+        .revenue-section {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .finance-section .section-title {
+            color: #f1f5f9;
+        }
+
+        .revenue-section .section-title {
+            color: #1f2937;
+        }
+
+        .section-subtitle {
+            font-size: 0.875rem;
+            margin-bottom: 20px;
+        }
+
+        .finance-section .section-subtitle {
+            color: #64748b;
+        }
+
+        .revenue-section .section-subtitle {
+            color: #6b7280;
+        }
+
+        .finance-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #374151;
+        }
+
+        .finance-item:last-child {
+            border-bottom: none;
+        }
+
+        .finance-label {
+            color: #fb923c;
+            text-transform: uppercase;
+            font-weight: 500;
+            font-size: 0.875rem;
+            flex: 1;
+        }
+
+        .finance-value {
+            color: white;
+            font-weight: 600;
+            font-size: 1.125rem;
+            flex: 0 0 120px;
+            text-align: right;
+        }
+
+        .finance-last-year {
+            color: #9ca3af;
+            font-size: 0.875rem;
+            flex: 0 0 100px;
+            text-align: right;
+        }
+
+        .finance-change {
+            font-weight: 700;
+            font-size: 0.875rem;
+            flex: 0 0 80px;
+            text-align: right;
+        }
+
+        .positive {
+            color: #10b981;
+        }
+
+        .negative {
+            color: #ef4444;
+        }
+
+        .finance-headers {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #4b5563;
+        }
+
+        .header-item {
+            color: #6b7280;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .header-metric {
+            flex: 1;
+        }
+
+        .header-projected {
+            flex: 0 0 120px;
+            text-align: right;
+        }
+
+        .header-current {
+            flex: 0 0 100px;
+            text-align: right;
+        }
+
+        .header-growth {
+            flex: 0 0 80px;
+            text-align: right;
+        }
+
+        .info-banner {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid;
+            margin-bottom: 20px;
+        }
+
+        .finance-section .info-banner {
+            background-color: #1e3a8a;
+            background-opacity: 0.3;
+            border-color: #3b82f6;
+        }
+
+        .revenue-section .info-banner {
+            background-color: #dbeafe;
+            border-color: #93c5fd;
+        }
+
+        .info-banner-title {
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .finance-section .info-banner-title {
+            color: #93c5fd;
+        }
+
+        .revenue-section .info-banner-title {
+            color: #1e40af;
+        }
+
+        .info-banner-text {
+            font-size: 0.75rem;
+            margin-top: 4px;
+        }
+
+        .finance-section .info-banner-text {
+            color: #bfdbfe;
+        }
+
+        .revenue-section .info-banner-text {
+            color: #2563eb;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin-top: 20px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .dropdown-button {
+            background-color: transparent;
+            border: 1px solid #d1d5db;
+            color: #374151;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-width: 140px;
+        }
+
+        .dropdown-button:hover {
+            border-color: #9ca3af;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 160px;
+            border-radius: 6px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            border: 1px solid #e5e7eb;
+            z-index: 1;
+        }
+
+        .dropdown-content.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            color: #374151;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f3f4f6;
+        }
+
+        .dropdown-item.active {
+            background-color: #fef3cd;
+            color: #92400e;
+            font-weight: 500;
+        }
+
+        .metric-summary {
+            background-color: #f9fafb;
+            color: #374151;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .metric-summary-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            margin-bottom: 4px;
+        }
+
+        .metric-summary-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .metric-value {
+            font-weight: 600;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6b7280;
+        }
+
+        .error {
+            background-color: #fecaca;
+            border: 1px solid #f87171;
+            color: #dc2626;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .connection-status {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.75rem;
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Client Input Styles */
+        .client-input-section {
+            margin: 20px 0;
+        }
+
+        .client-input-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .client-input {
+            padding: 8px 16px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .client-input:focus {
+            outline: none;
+            border-color: #f97316;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+        }
+
+        .load-button {
+            padding: 8px 20px;
+            background-color: #f97316;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .load-button:hover {
+            background-color: #ea580c;
+        }
+
+        .load-button:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .force-button {
+            padding: 8px 20px;
+            background-color: #dc2626;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .force-button:hover:not(:disabled) {
+            background-color: #b91c1c;
+        }
+
+        .force-button:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .cache-status {
+            text-align: center;
+            font-size: 0.75rem;
+            margin-top: 8px;
+        }
+
+        .cache-hit {
+            color: #059669;
+            font-weight: 500;
+        }
+
+        .cache-miss {
+            color: #d97706;
+            font-weight: 500;
+        }
+
+        .cache-error {
+            color: #dc2626;
+            font-weight: 500;
+        }
+
+        .parallel-button {
+            padding: 8px 20px;
+            background-color: #7c3aed;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .parallel-button:hover:not(:disabled) {
+            background-color: #6d28d9;
+        }
+
+        .parallel-button:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-selector {
+                flex-wrap: wrap;
+                gap: 4px;
+            }
+
+            .finance-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+
+            .finance-value, .finance-last-year, .finance-change {
+                flex: none;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Financial Projection Dashboard</h1>
+            <p>Timeline-Enhanced Engine • Client: <span id="current-client">Enter Client ID</span> • Timeframe: <span id="current-timeframe">1 Year</span></p>
+
+            <!-- Client ID Input Section -->
+            <div class="client-input-section">
+                <div class="client-input-container">
+                    <input type="text" id="client-id-input" placeholder="Enter Client ID (e.g. 391)" class="client-input">
+                    <button onclick="loadClientData()" class="load-button">Load Client Data</button>
+                    <button onclick="forceRegenerate()" class="force-button" id="force-button" disabled>🔄 Force Regenerate</button>
+                    <button onclick="generateAllTimeframes()" class="parallel-button" id="parallel-button" disabled>⚡ Generate All Timeframes</button>
+                </div>
+                <div class="cache-status" id="cache-status"></div>
+            </div>
+
+            <div class="timeline-info">
+                <div class="timeline-info-title">Future-State Planning: <span id="base-year">2026</span> → <span id="target-year">2026</span> (<span id="years-ahead">1</span> years ahead)</div>
+                <div class="timeline-info-subtitle">Tactical Planning • Standard Complexity</div>
+            </div>
+        </div>
+
+        <!-- Timeline Selector -->
+        <div class="timeline-section">
+            <div class="timeline-title">Timeline Projection</div>
+            <div class="timeline-subtitle">Select your business planning horizon</div>
+
+            <div class="timeline-selector">
+                <button class="timeline-button active" data-timeframe="1 Year" data-description="Tactical Planning">
+                    <span>📅</span>
+                    <span>1 Year</span>
+                </button>
+                <button class="timeline-button" data-timeframe="3 Years" data-description="Strategic Growth">
+                    <span>📈</span>
+                    <span>3 Years</span>
+                </button>
+                <button class="timeline-button" data-timeframe="5 Years" data-description="Market Leadership">
+                    <span>🎯</span>
+                    <span>5 Years</span>
+                </button>
+                <button class="timeline-button" data-timeframe="10 Years" data-description="Industry Transformation">
+                    <span>🚀</span>
+                    <span>10 Years</span>
+                </button>
+                <button class="timeline-button" data-timeframe="End Game" data-description="Ultimate Vision">
+                    <span>👑</span>
+                    <span>End Game</span>
+                </button>
+            </div>
+
+            <div class="timeline-description">
+                <span class="description-text">Tactical Planning</span> - 1 Year business planning
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Finance Section -->
+            <div class="finance-section">
+                <div class="section-title">Finances (<span id="finance-timeframe">1 Year</span> Projections)</div>
+                <div class="section-subtitle">
+                    Financial Performance • Client: <span class="client-display">Enter Client ID</span><br>
+                    Current year vs previous year comparison
+                </div>
+
+                <div class="info-banner">
+                    <div class="info-banner-title">Historical Financial Performance</div>
+                    <div class="info-banner-text">
+                        Actual results • Year-over-year comparison • Performance analysis
+                    </div>
+                </div>
+
+                <!-- Column headers -->
+                <div class="finance-headers">
+                    <div class="header-item header-metric">Metric</div>
+                    <div class="header-item header-projected">Projected</div>
+                    <div class="header-item header-current">Current</div>
+                    <div class="header-item header-growth">Growth</div>
+                </div>
+
+                <!-- Financial data rows -->
+                <div id="finance-data">
+                    <div class="loading">Loading financial data...</div>
+                </div>
+
+                <div class="connection-status">
+                    <div class="status-indicator">
+                        <span class="status-dot"></span>
+                        <span>Connected to Financial Engine (localhost:8005)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Revenue Chart Section -->
+            <div class="revenue-section">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <div>
+                        <div class="section-title">Finances</div>
+                        <div class="section-subtitle">
+                            Timeline-Enhanced • <span class="client-display">Enter Client ID</span> • <span id="chart-timeframe">1 Year</span>
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <button class="dropdown-button" onclick="toggleDropdown()">
+                            <span id="selected-metric">💰 Revenue</span>
+                            <span>▼</span>
+                        </button>
+                        <div class="dropdown-content" id="dropdown-content">
+                            <div class="dropdown-item active" onclick="selectMetric('Revenue', '💰')">💰 Revenue</div>
+                            <div class="dropdown-item" onclick="selectMetric('Net Profit', '💎')">💎 Net Profit</div>
+                            <div class="dropdown-item" onclick="selectMetric('Gross Profit', '📈')">📈 Gross Profit</div>
+                            <div class="dropdown-item" onclick="selectMetric('Expenses', '💸')">💸 Expenses</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-banner">
+                    <div class="info-banner-title">Timeline-Enhanced Financial Projections</div>
+                    <div class="info-banner-text">
+                        Future-state planning active for <span id="banner-timeframe">1 Year</span> • Advanced prediction algorithms
+                    </div>
+                </div>
+
+                <div id="current-metric-summary" class="metric-summary">
+                    <div class="metric-summary-row">
+                        <span>Projected Revenue:</span>
+                        <span id="projected-value" class="metric-value">Loading...</span>
+                    </div>
+                    <div class="metric-summary-row">
+                        <span>Growth:</span>
+                        <span id="growth-value" class="metric-value">Loading...</span>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // IMPORTANT: Changed to localhost:8005 for local development
+        const API_BASE_URL = 'http://localhost:8005';
+
+        let financeData = null;
+        let chart = null;
+        let currentMetric = 'Revenue';
+        let currentTimeframe = '1 Year';
+        let clientId = null;
+
+        // Dynamic year calculation functions
+        function getProjectionStartYear() {
+            const currentDate = new Date();
+            return currentDate.getFullYear() + 1;
+        }
+
+        function getDynamicYearRange(years) {
+            const baseYear = getProjectionStartYear();
+            const targetYear = baseYear + years - 1;
+            return { baseYear, targetYear };
+        }
+
+        // Timeline configuration with dynamic years
+        function getTimeframeMappings() {
+            const baseYear = getProjectionStartYear();
+            return {
+                '1 Year': { targetYear: baseYear, yearsAhead: 1, description: 'Tactical Planning' },
+                '3 Years': { targetYear: baseYear + 2, yearsAhead: 3, description: 'Strategic Growth' },
+                '5 Years': { targetYear: baseYear + 4, yearsAhead: 5, description: 'Market Leadership' },
+                '10 Years': { targetYear: baseYear + 9, yearsAhead: 10, description: 'Industry Transformation' },
+                'End Game': { targetYear: baseYear + 14, yearsAhead: 15, description: 'Ultimate Vision' }
+            };
+        }
+
+        const timeframeMappings = getTimeframeMappings();
+
+        // Client ID management
+        function loadClientData() {
+            const input = document.getElementById('client-id-input');
+            const inputClientId = input.value.trim();
+
+            if (!inputClientId) {
+                alert('Please enter a Client ID');
+                return;
+            }
+
+            clientId = inputClientId;
+            updateClientDisplay(clientId);
+            fetchFinancialData();
+        }
+
+        function updateClientDisplay(id) {
+            document.getElementById('current-client').textContent = id;
+            document.querySelectorAll('.client-display').forEach(el => {
+                el.textContent = id;
+            });
+
+            document.getElementById('force-button').disabled = false;
+            document.getElementById('parallel-button').disabled = false;
+        }
+
+        // Force regenerate function
+        async function forceRegenerate() {
+            if (!clientId) {
+                alert('Please enter a Client ID first');
+                return;
+            }
+
+            if (!confirm('Force regenerate the financial projection? This will overwrite cached data.')) {
+                return;
+            }
+
+            try {
+                console.log('🔄 Force regenerating projection for client:', clientId);
+
+                const forceButton = document.getElementById('force-button');
+                const originalText = forceButton.innerHTML;
+                forceButton.innerHTML = '⏳ Regenerating...';
+                forceButton.disabled = true;
+
+                document.getElementById('finance-data').innerHTML = '<div class="loading">🔄 Force regenerating financial data...</div>';
+                document.getElementById('cache-status').innerHTML = '<div class="cache-miss">⚡ Force regenerating projections...</div>';
+
+                const response = await fetch(`${API_BASE_URL}/predict/force-regenerate?client_id=${clientId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('✅ Force regeneration completed:', data);
+
+                await processProjectionData(data);
+
+                document.getElementById('cache-status').innerHTML = '<div class="cache-miss">🔄 Freshly regenerated projection</div>';
+
+                const successMsg = document.createElement('div');
+                successMsg.style.cssText = 'background: #dcfce7; color: #166534; padding: 8px 16px; border-radius: 6px; margin-top: 8px; text-align: center; font-size: 0.875rem;';
+                successMsg.textContent = '✅ Projection successfully regenerated!';
+                document.getElementById('cache-status').appendChild(successMsg);
+
+                setTimeout(() => {
+                    if (successMsg.parentNode) {
+                        successMsg.parentNode.removeChild(successMsg);
+                    }
+                }, 5000);
+
+            } catch (error) {
+                console.error('🚨 Error force regenerating:', error);
+                document.getElementById('cache-status').innerHTML = '<div class="cache-error">❌ Error regenerating projection</div>';
+
+                document.getElementById('finance-data').innerHTML = `
+                    <div class="error">
+                        <strong>Force Regeneration Error:</strong> ${error.message}<br>
+                        <small>Check console for details</small>
+                    </div>
+                `;
+            } finally {
+                const forceButton = document.getElementById('force-button');
+                forceButton.innerHTML = '🔄 Force Regenerate';
+                forceButton.disabled = false;
+            }
+        }
+
+        // Generate all timeframes in parallel
+        async function generateAllTimeframes() {
+            if (!clientId) {
+                alert('Please enter a Client ID first');
+                return;
+            }
+
+            if (!confirm('Generate ALL timeframes in parallel? This may take 2-3 minutes.')) {
+                return;
+            }
+
+            try {
+                console.log('⚡ Starting parallel generation for all timeframes');
+
+                const parallelButton = document.getElementById('parallel-button');
+                const originalText = parallelButton.innerHTML;
+                parallelButton.innerHTML = '⚡ Generating All...';
+                parallelButton.disabled = true;
+
+                document.getElementById('finance-data').innerHTML = '<div class="loading">⚡ Generating ALL timeframes...</div>';
+                document.getElementById('cache-status').innerHTML = '<div class="cache-miss">⚡ Parallel processing: 1Y, 3Y, 5Y, 10Y, 15Y...</div>';
+
+                const startTime = Date.now();
+
+                const response = await fetch(`${API_BASE_URL}/predict-all-timeframes?client_id=${clientId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('✅ Parallel generation completed:', data);
+
+                const duration = ((Date.now() - startTime) / 1000).toFixed(1);
+
+                if (data.projections && data.projections[currentTimeframe]) {
+                    const currentProjection = data.projections[currentTimeframe];
+                    await processProjectionData(currentProjection);
+                }
+
+                const generatedCount = data.generated_timeframes ? data.generated_timeframes.length : 0;
+                const cachedCount = data.cached_timeframes ? data.cached_timeframes.length : 0;
+
+                document.getElementById('cache-status').innerHTML =
+                    `<div class="cache-miss">⚡ Complete in ${duration}s: Generated ${generatedCount}, Cached ${cachedCount}</div>`;
+
+            } catch (error) {
+                console.error('🚨 Error in parallel generation:', error);
+                document.getElementById('cache-status').innerHTML = '<div class="cache-error">❌ Error in parallel generation</div>';
+
+                document.getElementById('finance-data').innerHTML = `
+                    <div class="error">
+                        <strong>Parallel Generation Error:</strong> ${error.message}<br>
+                        <small>Check console for details</small>
+                    </div>
+                `;
+            } finally {
+                const parallelButton = document.getElementById('parallel-button');
+                parallelButton.innerHTML = '⚡ Generate All Timeframes';
+                parallelButton.disabled = false;
+            }
+        }
+
+        // Allow Enter key to load data
+        document.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById('client-id-input');
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    loadClientData();
+                }
+            });
+        });
+
+        // Timeline selector functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const timelineButtons = document.querySelectorAll('.timeline-button');
+
+            timelineButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (!clientId) {
+                        alert('Please enter a Client ID first');
+                        return;
+                    }
+
+                    const timeframe = this.dataset.timeframe;
+                    const description = this.dataset.description;
+
+                    timelineButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    currentTimeframe = timeframe;
+                    updateTimeframeDisplay(timeframe, description);
+
+                    fetchFinancialData();
+                });
+            });
+        });
+
+        function updateTimeframeDisplay(timeframe, description) {
+            const mapping = timeframeMappings[timeframe];
+            const baseYear = getProjectionStartYear();
+
+            document.getElementById('current-timeframe').textContent = timeframe;
+            document.getElementById('base-year').textContent = baseYear;
+            document.getElementById('target-year').textContent = mapping.targetYear;
+            document.getElementById('years-ahead').textContent = mapping.yearsAhead;
+            document.getElementById('finance-timeframe').textContent = timeframe;
+            document.getElementById('chart-timeframe').textContent = timeframe;
+            document.getElementById('banner-timeframe').textContent = timeframe;
+            document.querySelector('.description-text').textContent = description;
+        }
+
+        // Finance data formatting functions
+        function formatCurrency(amount) {
+            if (!amount && amount !== 0) return "$0";
+
+            const num = parseFloat(amount);
+            if (isNaN(num)) return "$0";
+
+            if (num >= 1000000) {
+                return `$${(num / 1000000).toFixed(1)}M`;
+            } else if (num >= 1000) {
+                return `$${(num / 1000).toFixed(0)}k`;
+            }
+            return `$${num.toLocaleString()}`;
+        }
+
+        function formatChange(changeValue) {
+            if (!changeValue && changeValue !== 0) return "0%";
+
+            const num = parseFloat(changeValue);
+            if (isNaN(num)) return "0%";
+
+            return `${num > 0 ? '+' : ''}${num.toFixed(1)}%`;
+        }
+
+        function getChangeColor(changeValue) {
+            if (!changeValue && changeValue !== 0) return '';
+
+            const num = parseFloat(changeValue);
+            if (isNaN(num)) return '';
+
+            return num > 0 ? 'positive' : 'negative';
+        }
+
+        // Dropdown functions
+        function toggleDropdown() {
+            document.getElementById("dropdown-content").classList.toggle("show");
+        }
+
+        function selectMetric(metric, icon) {
+            currentMetric = metric;
+            document.getElementById("selected-metric").innerHTML = `${icon} ${metric}`;
+
+            document.querySelectorAll('.dropdown-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            document.getElementById("dropdown-content").classList.remove("show");
+
+            if (financeData) {
+                updateMetricSummary();
+                updateChart();
+            }
+        }
+
+        // Close dropdown when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown-button') && !event.target.matches('.dropdown-button span')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    dropdowns[i].classList.remove('show');
+                }
+            }
+        }
+
+        // Fetch financial data
+        async function fetchFinancialData() {
+            if (!clientId) {
+                console.warn('No client ID set - skipping fetch');
+                return;
+            }
+
+            try {
+                console.log('🔗 Connecting to Financial Projection API...', {
+                    clientId,
+                    timeframe: currentTimeframe,
+                    url: API_BASE_URL
+                });
+
+                document.getElementById('finance-data').innerHTML = '<div class="loading">Loading financial data...</div>';
+
+                const response = await fetch(`${API_BASE_URL}/predict?client_id=${clientId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('📊 Financial data received:', data);
+
+                await processProjectionData(data);
+
+            } catch (error) {
+                console.error('🚨 Error fetching financial data:', error);
+                document.getElementById('finance-data').innerHTML = `
+                    <div class="error">
+                        <strong>Connection Error:</strong> ${error.message}<br>
+                        <small>Make sure the backend is running on ${API_BASE_URL}</small>
+                    </div>
+                `;
+
+                document.getElementById('cache-status').innerHTML = '<div class="cache-error">❌ Connection error</div>';
+            }
+        }
+
+        // Process projection data
+        async function processProjectionData(data) {
+            const cacheStatus = document.getElementById('cache-status');
+            if (data.from_cache) {
+                const cachedTime = data.cached_at ? new Date(data.cached_at).toLocaleString() : 'Unknown';
+                cacheStatus.innerHTML = `<div class="cache-hit">✅ Using cached data (Generated: ${cachedTime})</div>`;
+            } else if (data.force_regenerated) {
+                cacheStatus.innerHTML = '<div class="cache-miss">🔄 Force regenerated projection</div>';
+            } else {
+                cacheStatus.innerHTML = '<div class="cache-miss">⚡ Freshly generated projection</div>';
+            }
+
+            const projectionData = data.full_validated_projection || data.projections_data || {};
+
+            let timeframeData = [];
+            if (currentTimeframe === '1 Year') {
+                timeframeData = data.projections_data?.one_year_monthly || [];
+            } else if (currentTimeframe === '3 Years') {
+                timeframeData = data.projections_data?.three_years_monthly || [];
+            } else if (currentTimeframe === '5 Years') {
+                timeframeData = data.projections_data?.five_years_quarterly || [];
+            } else if (currentTimeframe === '10 Years') {
+                timeframeData = data.projections_data?.ten_years_annual || [];
+            } else if (currentTimeframe === 'End Game') {
+                timeframeData = data.projections_data?.fifteen_years_annual || [];
+            }
+
+            if (!timeframeData || timeframeData.length === 0) {
+                console.error(`❌ No projection data found for ${currentTimeframe}`);
+
+                document.getElementById('finance-data').innerHTML = `
+                    <div class="error">
+                        <strong>Projection Data Missing:</strong> The ${currentTimeframe} projection failed to generate.<br>
+                        <small>Try using "Force Regenerate" or switch to a different timeframe.</small>
+                    </div>
+                `;
+
+                cacheStatus.innerHTML = `<div class="cache-error">❌ ${currentTimeframe} projection data missing</div>`;
+                return;
+            }
+
+            console.log(`✅ Found ${timeframeData.length} data points for ${currentTimeframe}`);
+
+            // Calculate totals
+            let totalRevenue = 0, totalExpenses = 0, totalNetProfit = 0, totalGrossProfit = 0;
+
+            if (currentTimeframe === '1 Year') {
+                totalRevenue = timeframeData.reduce((sum, month) => sum + (month.revenue || 0), 0);
+                totalExpenses = timeframeData.reduce((sum, month) => sum + (month.expenses || 0), 0);
+                totalNetProfit = timeframeData.reduce((sum, month) => sum + (month.net_profit || 0), 0);
+                totalGrossProfit = timeframeData.reduce((sum, month) => sum + (month.gross_profit || 0), 0);
+            } else {
+                const finalPeriod = timeframeData[timeframeData.length - 1] || {};
+                totalRevenue = finalPeriod.revenue || 0;
+                totalExpenses = finalPeriod.expenses || 0;
+                totalNetProfit = finalPeriod.net_profit || 0;
+                totalGrossProfit = finalPeriod.gross_profit || 0;
+            }
+
+            const historicalBaseline = data.historical_baseline;
+
+            const currentRevenue = historicalBaseline?.current_annual_revenue || 0;
+            const currentExpenses = historicalBaseline?.current_annual_expenses || 0;
+            const currentNetProfit = historicalBaseline?.current_annual_net_profit || 0;
+            const currentGrossProfit = historicalBaseline?.current_annual_gross_profit ||
+                                     (currentRevenue - currentExpenses);
+
+            let revenueGrowth = 0, expenseGrowth = 0, netProfitGrowth = 0, grossProfitGrowth = 0;
+            let timeframePeriods = 1;
+
+            if (currentTimeframe === '1 Year') {
+                timeframePeriods = 1;
+            } else if (currentTimeframe === '3 Years') {
+                timeframePeriods = 3;
+            } else if (currentTimeframe === '5 Years') {
+                timeframePeriods = 5;
+            } else if (currentTimeframe === '10 Years') {
+                timeframePeriods = 10;
+            } else if (currentTimeframe === 'End Game') {
+                timeframePeriods = 15;
+            }
+
+            if (currentRevenue > 0 && totalRevenue > 0) {
+                revenueGrowth = (Math.pow(totalRevenue / currentRevenue, 1 / timeframePeriods) - 1) * 100;
+            }
+            if (currentExpenses > 0 && totalExpenses > 0) {
+                expenseGrowth = (Math.pow(totalExpenses / currentExpenses, 1 / timeframePeriods) - 1) * 100;
+            }
+            if (currentNetProfit > 0 && totalNetProfit > 0) {
+                netProfitGrowth = (Math.pow(totalNetProfit / currentNetProfit, 1 / timeframePeriods) - 1) * 100;
+            } else if (currentNetProfit != 0) {
+                netProfitGrowth = ((totalNetProfit - currentNetProfit) / Math.abs(currentNetProfit)) * 100 / timeframePeriods;
+            }
+
+            if (currentGrossProfit > 0 && totalGrossProfit > 0) {
+                grossProfitGrowth = (Math.pow(totalGrossProfit / currentGrossProfit, 1 / timeframePeriods) - 1) * 100;
+            } else if (currentGrossProfit != 0) {
+                grossProfitGrowth = ((totalGrossProfit - currentGrossProfit) / Math.abs(currentGrossProfit)) * 100 / timeframePeriods;
+            }
+
+            financeData = {
+                revenue: {
+                    title: "REVENUE",
+                    value: totalRevenue,
+                    lastYear: currentRevenue,
+                    change: revenueGrowth,
+                    monthly_data: timeframeData
+                },
+                expenses: {
+                    title: "OPERATING EXPENSES",
+                    value: totalExpenses,
+                    lastYear: currentExpenses,
+                    change: expenseGrowth,
+                    monthly_data: timeframeData
+                },
+                netProfit: {
+                    title: "NET PROFIT",
+                    value: totalNetProfit,
+                    lastYear: currentNetProfit,
+                    change: netProfitGrowth,
+                    monthly_data: timeframeData
+                },
+                grossProfit: {
+                    title: "GROSS PROFIT",
+                    value: totalGrossProfit,
+                    lastYear: currentGrossProfit,
+                    change: grossProfitGrowth,
+                    monthly_data: timeframeData
+                }
+            };
+
+            displayFinanceData();
+            updateMetricSummary();
+            updateChart();
+        }
+
+        // Display finance data
+        function displayFinanceData() {
+            if (!financeData) return;
+
+            const financeContainer = document.getElementById('finance-data');
+            financeContainer.innerHTML = '';
+
+            Object.values(financeData).forEach(item => {
+                const changeClass = getChangeColor(item.change);
+
+                const financeItem = document.createElement('div');
+                financeItem.className = 'finance-item';
+                financeItem.innerHTML = `
+                    <div class="finance-label">${item.title}</div>
+                    <div class="finance-value">${formatCurrency(item.value)}</div>
+                    <div class="finance-last-year">${formatCurrency(item.lastYear)}</div>
+                    <div class="finance-change ${changeClass}">${formatChange(item.change)}</div>
+                `;
+                financeContainer.appendChild(financeItem);
+            });
+        }
+
+        // Update metric summary
+        function updateMetricSummary() {
+            if (!financeData) return;
+
+            const metricMapping = {
+                'Revenue': 'revenue',
+                'Net Profit': 'netProfit',
+                'Gross Profit': 'grossProfit',
+                'Expenses': 'expenses'
+            };
+
+            const selectedData = financeData[metricMapping[currentMetric]];
+
+            if (selectedData) {
+                document.getElementById('projected-value').textContent = formatCurrency(selectedData.value);
+
+                const growthElement = document.getElementById('growth-value');
+                const change = selectedData.change || 0;
+
+                growthElement.textContent = formatChange(change);
+                growthElement.className = 'metric-value ' + (change > 0 ? 'positive' : 'negative');
+            }
+        }
+
+        // Generate chart data
+        function generateChartData() {
+            if (!financeData) return [];
+
+            const metricMapping = {
+                'Revenue': 'revenue',
+                'Net Profit': 'netProfit',
+                'Gross Profit': 'grossProfit',
+                'Expenses': 'expenses'
+            };
+
+            const selectedFinanceData = financeData[metricMapping[currentMetric]];
+
+            if (!selectedFinanceData) return [];
+
+            if (selectedFinanceData.monthly_data && selectedFinanceData.monthly_data.length > 0) {
+                const fieldMapping = {
+                    'Revenue': 'revenue',
+                    'Net Profit': 'net_profit',
+                    'Gross Profit': 'gross_profit',
+                    'Expenses': 'expenses'
+                };
+
+                const fieldKey = fieldMapping[currentMetric] || 'revenue';
+
+                return selectedFinanceData.monthly_data.map(period => {
+                    let label;
+
+                    if (currentTimeframe === '1 Year' || currentTimeframe === '3 Years') {
+                        if (period.month) {
+                            const [year, month] = period.month.split('-');
+                            const dateObj = new Date(parseInt(year), parseInt(month) - 1, 1);
+
+                            if (currentTimeframe === '1 Year') {
+                                label = dateObj.toLocaleDateString('en-US', { month: 'short' });
+                            } else {
+                                label = dateObj.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
+                            }
+                        } else {
+                            label = 'N/A';
+                        }
+                    } else if (currentTimeframe === '5 Years') {
+                        if (period.quarter) {
+                            const [year, quarter] = period.quarter.split('-Q');
+                            label = `Q${quarter} ${year}`;
+                        } else {
+                            label = 'N/A';
+                        }
+                    } else {
+                        if (period.year) {
+                            label = period.year.toString();
+                        } else {
+                            label = 'N/A';
+                        }
+                    }
+
+                    return {
+                        month: label,
+                        value: Math.round((period[fieldKey] || 0) / 1000)
+                    };
+                });
+            }
+
+            return [];
+        }
+
+        // Update chart
+        function updateChart() {
+            const chartData = generateChartData();
+
+            if (chart) {
+                chart.destroy();
+            }
+
+            const ctx = document.getElementById('revenueChart').getContext('2d');
+
+            chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chartData.map(item => item.month),
+                    datasets: [{
+                        label: `${currentMetric} (thousands)`,
+                        data: chartData.map(item => item.value),
+                        backgroundColor: currentMetric === 'Expenses' ?
+                            'rgba(239, 68, 68, 0.7)' : 'rgba(59, 130, 246, 0.7)',
+                        borderColor: currentMetric === 'Expenses' ?
+                            'rgba(239, 68, 68, 1)' : 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1,
+                        borderRadius: 4,
+                        borderSkipped: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#374151'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: '#6b7280',
+                                callback: function(value) {
+                                    return '$' + value + 'k';
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(107, 114, 128, 0.1)'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#6b7280'
+                            },
+                            grid: {
+                                color: 'rgba(107, 114, 128, 0.1)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Financial Dashboard Initialized (Local Version)');
+            console.log('📍 API URL:', API_BASE_URL);
+
+            updateTimeframeDisplay(currentTimeframe, timeframeMappings[currentTimeframe].description);
+
+            // Set default client ID for testing (optional)
+            document.getElementById('client-id-input').value = '391';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "metadata": {
+    "timestamp": "2026-01-21T11:15:52.783934",
+    "client_id": "499",
+    "category": "requests",
+    "filename_prefix": "force_regenerate_request",
+    "data_type": "dict",
+    "additional_info": null,
+    "file_size_estimate": 176
+  },
+  "content": {
+    "client_id": "499",
+    "endpoint": "/predict/force-regenerate",
+    "request_timestamp": "2026-01-21T11:15:52.782353",
+    "request_type": "force_regeneration",
+    "cleared_cache_count": 1
+  }
+}

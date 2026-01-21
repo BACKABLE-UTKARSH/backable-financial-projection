@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "timestamp": "2026-01-21T15:33:48.371351",
+    "client_id": "499",
+    "category": "api_responses",
+    "filename_prefix": "api_attempts_log",
+    "data_type": "dict",
+    "additional_info": null,
+    "file_size_estimate": 1536
+  },
+  "content": {
+    "client_id": "499",
+    "method": "api_keys_fallback",
+    "max_retries": 3,
+    "attempts": [
+      {
+        "attempt_number": 1,
+        "api_key_index": 6,
+        "start_time": "2026-01-21T15:33:46.142682",
+        "status": "failed",
+        "error": "404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-3-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}",
+        "end_time": "2026-01-21T15:33:46.902423",
+        "duration_seconds": 0.759741
+      },
+      {
+        "attempt_number": 2,
+        "api_key_index": 6,
+        "start_time": "2026-01-21T15:33:46.903423",
+        "status": "failed",
+        "error": "404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-3-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}",
+        "end_time": "2026-01-21T15:33:47.644842",
+        "duration_seconds": 0.741419
+      },
+      {
+        "attempt_number": 3,
+        "api_key_index": 6,
+        "start_time": "2026-01-21T15:33:47.644842",
+        "status": "failed",
+        "error": "404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-3-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}",
+        "end_time": "2026-01-21T15:33:48.361275",
+        "duration_seconds": 0.716433
+      }
+    ],
+    "start_time": "2026-01-21T15:33:46.142682",
+    "end_time": "2026-01-21T15:33:48.361275",
+    "final_status": "failed"
+  }
+}

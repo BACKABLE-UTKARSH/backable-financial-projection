@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "timestamp": "2026-01-21T11:45:42.422580",
+    "client_id": "499",
+    "category": "financial_data",
+    "filename_prefix": "document_processing_log",
+    "data_type": "dict",
+    "additional_info": null,
+    "file_size_estimate": 671
+  },
+  "content": {
+    "client_id": "499",
+    "total_documents": 2,
+    "processing_start": "2026-01-21T11:45:42.420581",
+    "documents_details": [
+      {
+        "index": 1,
+        "document_id": 279,
+        "original_name": "Philotimo_Global_-_Profit___Loss.pdf",
+        "category": "profit_loss",
+        "has_extracted_data": true,
+        "has_gemini_analysis": true,
+        "has_financial_ratios": true,
+        "has_analysis_metadata": true
+      },
+      {
+        "index": 2,
+        "document_id": 280,
+        "original_name": "Philotimo_Global_-_Balance_Sheet.pdf",
+        "category": "balance_sheet",
+        "has_extracted_data": true,
+        "has_gemini_analysis": true,
+        "has_financial_ratios": true,
+        "has_analysis_metadata": true
+      }
+    ],
+    "processing_end": "2026-01-21T11:45:42.421579",
+    "combined_content_length": 34403
+  }
+}

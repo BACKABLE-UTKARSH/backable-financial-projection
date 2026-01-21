@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "timestamp": "2026-01-21T15:33:27.533154",
+    "client_id": null,
+    "category": "system_logs",
+    "filename_prefix": "server_startup",
+    "data_type": "dict",
+    "additional_info": null,
+    "file_size_estimate": 216
+  },
+  "content": {
+    "event": "server_startup",
+    "host": "0.0.0.0",
+    "port": 8005,
+    "version": "3.2.0",
+    "features": {
+      "local_storage": true,
+      "detailed_logging": true,
+      "database_integration": true
+    },
+    "timestamp": "2026-01-21T15:33:27.533154"
+  }
+}

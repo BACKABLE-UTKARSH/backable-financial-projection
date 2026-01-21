@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "timestamp": "2026-01-21T11:00:39.526420",
+    "client_id": null,
+    "category": "system_logs",
+    "filename_prefix": "deterministic_api_key_selection",
+    "data_type": "dict",
+    "additional_info": null,
+    "file_size_estimate": 129
+  },
+  "content": {
+    "selected_index": 4,
+    "selected_key_preview": "AIzaSyAO35odPsSyelz3...",
+    "selection_method": "deterministic",
+    "client_id": "499"
+  }
+}

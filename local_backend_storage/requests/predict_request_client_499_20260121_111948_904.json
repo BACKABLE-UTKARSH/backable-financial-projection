@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "timestamp": "2026-01-21T11:19:48.904488",
+    "client_id": "499",
+    "category": "requests",
+    "filename_prefix": "predict_request",
+    "data_type": "dict",
+    "additional_info": null,
+    "file_size_estimate": 123
+  },
+  "content": {
+    "client_id": "499",
+    "endpoint": "/predict",
+    "request_timestamp": "2026-01-21T11:19:48.902982",
+    "request_type": "standard"
+  }
+}

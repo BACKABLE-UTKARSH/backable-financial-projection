@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Projection API Tester with Graphs</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .api-config {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .api-config h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .config-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .input-group input, .input-group select {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-success {
+            background: #4caf50;
+            color: white;
+        }
+
+        .btn-warning {
+            background: #ff9800;
+            color: white;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-online {
+            background: #4caf50;
+            box-shadow: 0 0 10px #4caf50;
+        }
+
+        .status-offline {
+            background: #f44336;
+            box-shadow: 0 0 10px #f44336;
+        }
+
+        .status-checking {
+            background: #ff9800;
+            box-shadow: 0 0 10px #ff9800;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .metric-card h4 {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .metric-card .metric-value {
+            font-size: 2em;
+            font-weight: 700;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin-bottom: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .chart-title {
+            color: #333;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s;
+        }
+
+        .tab:hover {
+            color: #667eea;
+        }
+
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #28a745;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #dc3545;
+        }
+
+        .info-message {
+            background: #d1ecf1;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #17a2b8;
+        }
+
+        .response-area {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .response-content {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .copy-btn {
+            padding: 6px 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85em;
+            margin-top: 10px;
+        }
+
+        .copy-btn:hover {
+            background: #5568d3;
+        }
+
+        .timeframe-selector {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .timeframe-btn {
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .timeframe-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .timeframe-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .baseline-info {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .baseline-info h4 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .baseline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .baseline-item {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .baseline-item label {
+            display: block;
+            font-size: 0.85em;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .baseline-item .value {
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📊 Financial Projection Visualizer</h1>
+            <p>Interactive graphs and charts for your financial projections</p>
+            <div style="margin-top: 15px;">
+                <span id="apiStatus">
+                    <span class="status-indicator status-checking"></span>
+                    <span>Checking API status...</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- API Configuration -->
+        <div class="api-config">
+            <h3>⚙️ Configuration</h3>
+            <div class="config-group">
+                <div class="input-group">
+                    <label for="apiUrl">API Base URL</label>
+                    <input type="text" id="apiUrl" value="http://localhost:8005" placeholder="http://localhost:8005">
+                </div>
+                <div class="input-group">
+                    <label for="clientId">Client ID</label>
+                    <input type="text" id="clientId" value="" placeholder="Enter client ID">
+                </div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="loadProjections()">
+                    <span>📈</span> Load Projections
+                </button>
+                <button class="btn btn-warning" onclick="forceRegenerate()">
+                    <span>🔄</span> Force Regenerate
+                </button>
+                <button class="btn btn-success" onclick="loadAllTimeframes()">
+                    <span>⚡</span> Load All Timeframes
+                </button>
+            </div>
+        </div>
+
+        <!-- Message Area -->
+        <div id="messageArea"></div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('overview')">📊 Overview</button>
+            <button class="tab" onclick="switchTab('detailed')">📈 Detailed Charts</button>
+            <button class="tab" onclick="switchTab('comparison')">🔍 Comparison</button>
+            <button class="tab" onclick="switchTab('rawdata')">💾 Raw Data</button>
+        </div>
+
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <!-- Historical Baseline -->
+            <div id="baselineSection" style="display: none;">
+                <div class="baseline-info">
+                    <h4>📊 Historical Baseline</h4>
+                    <div class="baseline-grid">
+                        <div class="baseline-item">
+                            <label>Annual Revenue</label>
+                            <div class="value" id="baselineRevenue">-</div>
+                        </div>
+                        <div class="baseline-item">
+                            <label>Annual Expenses</label>
+                            <div class="value" id="baselineExpenses">-</div>
+                        </div>
+                        <div class="baseline-item">
+                            <label>Net Profit</label>
+                            <div class="value" id="baselineProfit">-</div>
+                        </div>
+                        <div class="baseline-item">
+                            <label>Gross Profit</label>
+                            <div class="value" id="baselineGrossProfit">-</div>
+                        </div>
+                        <div class="baseline-item">
+                            <label>Revenue Growth Rate</label>
+                            <div class="value" id="baselineGrowth">-</div>
+                        </div>
+                        <div class="baseline-item">
+                            <label>Baseline Period</label>
+                            <div class="value" style="font-size: 1em;" id="baselinePeriod">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Metrics -->
+            <div id="metricsSection" style="display: none;">
+                <div class="section">
+                    <h3>🎯 Key Performance Indicators</h3>
+                    <div class="metrics-grid" id="metricsGrid"></div>
+                </div>
+            </div>
+
+            <!-- Main Chart -->
+            <div id="mainChartSection" style="display: none;">
+                <div class="section">
+                    <h3>📈 Revenue, Expenses & Profit Trends</h3>
+                    <div class="chart-container">
+                        <canvas id="mainChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Charts Tab -->
+        <div id="detailed" class="tab-content">
+            <!-- Timeframe Selector -->
+            <div class="section">
+                <h3>📅 Select Timeframe</h3>
+                <div class="timeframe-selector">
+                    <button class="timeframe-btn active" onclick="selectTimeframe('1year')">1 Year (Monthly)</button>
+                    <button class="timeframe-btn" onclick="selectTimeframe('3years')">3 Years (Monthly)</button>
+                    <button class="timeframe-btn" onclick="selectTimeframe('5years')">5 Years (Quarterly)</button>
+                    <button class="timeframe-btn" onclick="selectTimeframe('10years')">10 Years (Annual)</button>
+                    <button class="timeframe-btn" onclick="selectTimeframe('15years')">15 Years (Annual)</button>
+                </div>
+            </div>
+
+            <!-- Detailed Charts -->
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <div class="chart-title">💰 Revenue Projection</div>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">💸 Expenses Projection</div>
+                    <canvas id="expensesChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">💵 Net Profit Projection</div>
+                    <canvas id="profitChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">📊 Gross Profit Projection</div>
+                    <canvas id="grossProfitChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Tab -->
+        <div id="comparison" class="tab-content">
+            <div class="section">
+                <h3>🔍 Timeframe Comparison</h3>
+                <div class="info-message">
+                    <strong>Note:</strong> Load all timeframes to see comparison charts
+                </div>
+                <div class="chart-container" style="height: 500px;">
+                    <div class="chart-title">All Timeframes Revenue Comparison</div>
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Raw Data Tab -->
+        <div id="rawdata" class="tab-content">
+            <div class="section">
+                <h3>💾 Raw JSON Response</h3>
+                <div class="response-area">
+                    <div class="response-content" id="rawDataContent">No data loaded yet. Click "Load Projections" to fetch data.</div>
+                    <button class="copy-btn" onclick="copyToClipboard('rawDataContent')">📋 Copy JSON</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Financial Projection Visualizer v3.3.0 | Powered by Chart.js</p>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let projectionData = null;
+        let allTimeframesData = null;
+        let currentTimeframe = '1year';
+        let charts = {};
+
+        // Initialize
+        window.addEventListener('load', () => {
+            checkApiHealth();
+        });
+
+        async function checkApiHealth() {
+            const apiUrl = document.getElementById('apiUrl').value;
+            const statusElement = document.getElementById('apiStatus');
+            
+            try {
+                const response = await fetch(`${apiUrl}/health`);
+                if (response.ok) {
+                    statusElement.innerHTML = `
+                        <span class="status-indicator status-online"></span>
+                        <span>API Online ✓</span>
+                    `;
+                } else {
+                    statusElement.innerHTML = `
+                        <span class="status-indicator status-offline"></span>
+                        <span>API Error</span>
+                    `;
+                }
+            } catch (error) {
+                statusElement.innerHTML = `
+                    <span class="status-indicator status-offline"></span>
+                    <span>API Offline</span>
+                `;
+            }
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function showMessage(message, type = 'info') {
+            const messageArea = document.getElementById('messageArea');
+            const className = type === 'success' ? 'success-message' : 
+                            type === 'error' ? 'error-message' : 'info-message';
+            
+            messageArea.innerHTML = `<div class="${className}">${message}</div>`;
+            
+            setTimeout(() => {
+                messageArea.innerHTML = '';
+            }, 5000);
+        }
+
+        function getClientId() {
+            const clientId = document.getElementById('clientId').value.trim();
+            if (!clientId) {
+                showMessage('Please enter a Client ID', 'error');
+                return null;
+            }
+            return clientId;
+        }
+
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(value);
+        }
+
+        function formatPercentage(value) {
+            return `${value.toFixed(1)}%`;
+        }
+
+        async function loadProjections() {
+            const clientId = getClientId();
+            if (!clientId) return;
+
+            const apiUrl = document.getElementById('apiUrl').value;
+            showMessage('Loading projections...', 'info');
+
+            try {
+                const response = await fetch(`${apiUrl}/predict?client_id=${clientId}`, {
+                    method: 'POST'
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                projectionData = data;
+
+                // Show raw data
+                document.getElementById('rawDataContent').textContent = JSON.stringify(data, null, 2);
+
+                // Display visualizations
+                displayBaselineInfo(data);
+                displayMetrics(data);
+                displayMainChart(data);
+                displayDetailedCharts(data);
+
+                showMessage('✓ Projections loaded successfully!', 'success');
+
+            } catch (error) {
+                showMessage(`✗ Error: ${error.message}`, 'error');
+                console.error('Error:', error);
+            }
+        }
+
+        async function forceRegenerate() {
+            const clientId = getClientId();
+            if (!clientId) return;
+
+            if (!confirm('Force regenerate will bypass cache and create fresh projections. Continue?')) {
+                return;
+            }
+
+            const apiUrl = document.getElementById('apiUrl').value;
+            showMessage('Regenerating projections (this may take 30-60 seconds)...', 'info');
+
+            try {
+                const response = await fetch(`${apiUrl}/predict/force-regenerate?client_id=${clientId}`, {
+                    method: 'POST'
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                projectionData = data;
+
+                document.getElementById('rawDataContent').textContent = JSON.stringify(data, null, 2);
+
+                displayBaselineInfo(data);
+                displayMetrics(data);
+                displayMainChart(data);
+                displayDetailedCharts(data);
+
+                showMessage('✓ Fresh projections generated successfully!', 'success');
+
+            } catch (error) {
+                showMessage(`✗ Error: ${error.message}`, 'error');
+                console.error('Error:', error);
+            }
+        }
+
+        async function loadAllTimeframes() {
+            const clientId = getClientId();
+            if (!clientId) return;
+
+            const apiUrl = document.getElementById('apiUrl').value;
+            showMessage('Loading all timeframes in parallel...', 'info');
+
+            try {
+                const response = await fetch(`${apiUrl}/predict-all-timeframes?client_id=${clientId}`, {
+                    method: 'POST'
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                allTimeframesData = data;
+
+                document.getElementById('rawDataContent').textContent = JSON.stringify(data, null, 2);
+
+                // Display comparison chart
+                displayComparisonChart(data);
+
+                showMessage('✓ All timeframes loaded successfully!', 'success');
+
+            } catch (error) {
+                showMessage(`✗ Error: ${error.message}`, 'error');
+                console.error('Error:', error);
+            }
+        }
+
+        function displayBaselineInfo(data) {
+            if (!data.historical_baseline) return;
+
+            const baseline = data.historical_baseline;
+            
+            document.getElementById('baselineRevenue').textContent = 
+                formatCurrency(baseline.current_annual_revenue);
+            document.getElementById('baselineExpenses').textContent = 
+                formatCurrency(baseline.current_annual_expenses);
+            document.getElementById('baselineProfit').textContent = 
+                formatCurrency(baseline.current_annual_net_profit);
+            document.getElementById('baselineGrossProfit').textContent = 
+                formatCurrency(baseline.current_annual_gross_profit);
+            document.getElementById('baselineGrowth').textContent = 
+                formatPercentage(baseline.revenue_growth_rate);
+            document.getElementById('baselinePeriod').textContent = 
+                baseline.baseline_period;
+
+            document.getElementById('baselineSection').style.display = 'block';
+        }
+
+        function displayMetrics(data) {
+            if (!data.completion_score) return;
+
+            const metrics = [
+                {
+                    title: 'Business Name',
+                    value: data.business_name || 'N/A',
+                    format: 'text'
+                },
+                {
+                    title: 'Completion Score',
+                    value: data.completion_score.score * 100,
+                    format: 'percent'
+                },
+                {
+                    title: 'Data Quality',
+                    value: data.data_quality_score.score * 100,
+                    format: 'percent'
+                },
+                {
+                    title: 'Confidence',
+                    value: data.projection_confidence_score.score * 100,
+                    format: 'percent'
+                }
+            ];
+
+            const metricsGrid = document.getElementById('metricsGrid');
+            metricsGrid.innerHTML = metrics.map(metric => `
+                <div class="metric-card">
+                    <h4>${metric.title}</h4>
+                    <div class="metric-value">
+                        ${metric.format === 'percent' ? 
+                            metric.value.toFixed(0) + '%' : 
+                            metric.value}
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('metricsSection').style.display = 'block';
+        }
+
+        function displayMainChart(data) {
+            if (!data.projections_data || !data.projections_data.one_year_monthly) return;
+
+            const monthlyData = data.projections_data.one_year_monthly;
+
+            const labels = monthlyData.map(m => m.month);
+            const revenue = monthlyData.map(m => m.revenue);
+            const expenses = monthlyData.map(m => m.expenses);
+            const netProfit = monthlyData.map(m => m.net_profit);
+
+            const ctx = document.getElementById('mainChart');
+            
+            // Destroy existing chart
+            if (charts.main) {
+                charts.main.destroy();
+            }
+
+            charts.main = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Revenue',
+                            data: revenue,
+                            borderColor: '#4caf50',
+                            backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        },
+                        {
+                            label: 'Expenses',
+                            data: expenses,
+                            borderColor: '#f44336',
+                            backgroundColor: 'rgba(244, 67, 54, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        },
+                        {
+                            label: 'Net Profit',
+                            data: netProfit,
+                            borderColor: '#2196f3',
+                            backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + formatCurrency(context.parsed.y);
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return formatCurrency(value);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            document.getElementById('mainChartSection').style.display = 'block';
+        }
+
+        function selectTimeframe(timeframe) {
+            currentTimeframe = timeframe;
+            
+            // Update button states
+            document.querySelectorAll('.timeframe-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update charts
+            if (projectionData) {
+                displayDetailedCharts(projectionData);
+            }
+        }
+
+        function displayDetailedCharts(data) {
+            if (!data.projections_data) return;
+
+            let chartData = [];
+            let labels = [];
+
+            // Select data based on timeframe
+            switch(currentTimeframe) {
+                case '1year':
+                    chartData = data.projections_data.one_year_monthly;
+                    labels = chartData.map(d => d.month);
+                    break;
+                case '3years':
+                    chartData = data.projections_data.three_years_monthly;
+                    labels = chartData.map(d => d.month);
+                    break;
+                case '5years':
+                    chartData = data.projections_data.five_years_quarterly;
+                    labels = chartData.map(d => d.quarter);
+                    break;
+                case '10years':
+                    chartData = data.projections_data.ten_years_annual;
+                    labels = chartData.map(d => d.year.toString());
+                    break;
+                case '15years':
+                    chartData = data.projections_data.fifteen_years_annual;
+                    labels = chartData.map(d => d.year.toString());
+                    break;
+            }
+
+            // Revenue Chart
+            createOrUpdateChart('revenueChart', 'Revenue', labels, 
+                chartData.map(d => d.revenue), '#4caf50');
+
+            // Expenses Chart
+            createOrUpdateChart('expensesChart', 'Expenses', labels, 
+                chartData.map(d => d.expenses), '#f44336');
+
+            // Net Profit Chart
+            createOrUpdateChart('profitChart', 'Net Profit', labels, 
+                chartData.map(d => d.net_profit), '#2196f3');
+
+            // Gross Profit Chart
+            createOrUpdateChart('grossProfitChart', 'Gross Profit', labels, 
+                chartData.map(d => d.gross_profit), '#ff9800');
+        }
+
+        function createOrUpdateChart(canvasId, label, labels, data, color) {
+            const ctx = document.getElementById(canvasId);
+            
+            // Destroy existing chart
+            if (charts[canvasId]) {
+                charts[canvasId].destroy();
+            }
+
+            charts[canvasId] = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: label,
+                        data: data,
+                        backgroundColor: color,
+                        borderColor: color,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return formatCurrency(context.parsed.y);
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return formatCurrency(value);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function displayComparisonChart(data) {
+            if (!data.projections) return;
+
+            const ctx = document.getElementById('comparisonChart');
+            
+            // Destroy existing chart
+            if (charts.comparison) {
+                charts.comparison.destroy();
+            }
+
+            // Extract data for each timeframe
+            const timeframes = Object.keys(data.projections);
+            const datasets = [];
+
+            const colors = ['#4caf50', '#2196f3', '#ff9800', '#9c27b0', '#f44336'];
+
+            timeframes.forEach((timeframe, index) => {
+                const projData = data.projections[timeframe].projections_data;
+                
+                let chartData = [];
+                let labels = [];
+
+                // Get annual summary for comparison
+                if (timeframe === '1 Year') {
+                    const monthly = projData.one_year_monthly;
+                    chartData = [monthly.reduce((sum, m) => sum + m.revenue, 0)];
+                    labels = ['Year 1'];
+                } else if (timeframe === '3 Years') {
+                    // Sum by year
+                    const monthly = projData.three_years_monthly;
+                    for (let i = 0; i < 3; i++) {
+                        const yearData = monthly.slice(i * 12, (i + 1) * 12);
+                        chartData.push(yearData.reduce((sum, m) => sum + m.revenue, 0));
+                    }
+                    labels = ['Year 1', 'Year 2', 'Year 3'];
+                } else if (timeframe === '5 Years') {
+                    const quarterly = projData.five_years_quarterly;
+                    for (let i = 0; i < 5; i++) {
+                        const yearData = quarterly.slice(i * 4, (i + 1) * 4);
+                        chartData.push(yearData.reduce((sum, q) => sum + q.revenue, 0));
+                    }
+                    labels = ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'];
+                } else if (timeframe === '10 Years') {
+                    const annual = projData.ten_years_annual;
+                    chartData = annual.map(a => a.revenue);
+                    labels = annual.map(a => `Year ${a.year}`);
+                } else if (timeframe === '15 Years') {
+                    const annual = projData.fifteen_years_annual;
+                    chartData = annual.map(a => a.revenue);
+                    labels = annual.map(a => `Year ${a.year}`);
+                }
+
+                datasets.push({
+                    label: timeframe,
+                    data: chartData,
+                    borderColor: colors[index % colors.length],
+                    backgroundColor: colors[index % colors.length] + '40',
+                    tension: 0.4,
+                    fill: false
+                });
+            });
+
+            // Use the longest label set
+            const allLabels = datasets.reduce((longest, dataset) => 
+                dataset.data.length > longest.length ? 
+                    Array.from({length: dataset.data.length}, (_, i) => `Year ${i + 1}`) : 
+                    longest, 
+                []
+            );
+
+            charts.comparison = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: allLabels,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + formatCurrency(context.parsed.y);
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return formatCurrency(value);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                showMessage('✓ Copied to clipboard!', 'success');
+            }).catch(err => {
+                showMessage('✗ Failed to copy', 'error');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "timestamp": "2026-01-21T14:22:15.206478",
+    "client_id": null,
+    "category": "system_logs",
+    "filename_prefix": "gemini_client_creation",
+    "data_type": "dict",
+    "additional_info": null,
+    "file_size_estimate": 119
+  },
+  "content": {
+    "api_key_preview": "AIzaSyC7rJFOZQeiDscq...",
+    "creation_timestamp": "2026-01-21T14:22:15.186997",
+    "status": "success"
+  }
+}

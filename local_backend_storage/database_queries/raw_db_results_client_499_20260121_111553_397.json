@@ -1,0 +1,471 @@
+{
+  "metadata": {
+    "timestamp": "2026-01-21T11:15:53.397791",
+    "client_id": "499",
+    "category": "database_queries",
+    "filename_prefix": "raw_db_results",
+    "data_type": "dict",
+    "additional_info": null,
+    "file_size_estimate": 31860
+  },
+  "content": {
+    "client_id": "499",
+    "total_documents_found": 2,
+    "query_timestamp": "2026-01-21T11:15:53.395277",
+    "raw_rows": [
+      {
+        "id": 279,
+        "original_name": "Philotimo_Global_-_Profit___Loss.pdf",
+        "category": "profit_loss",
+        "extracted_data": {
+          "extraction_metadata": {
+            "source_file": "extract_1768882530_Philotimo_Global_-_Profit___Loss.pdf",
+            "extraction_type": "financial_document",
+            "file_size_bytes": 26126,
+            "timing_breakdown": {
+              "total_time": 0.9093589782714844
+            },
+            "extraction_engine": "manual_python_extraction",
+            "extraction_method": "comprehensive_pdf_extractor",
+            "processing_engine": "backable_finance_engine",
+            "extraction_timestamp": "2026-01-20T15:15:31.738172",
+            "extraction_time_seconds": 0.9093589782714844
+          },
+          "extracted_financial_data": {
+            "tables": [],
+            "full_text": "--- PAGE 1 ---\nProfit and Loss\nPhilotimoGlobal\nForthemonthended31October2025\nOCT2025 OCT2024 OCT2023 YEARTODATE\nIncome\nMentoring 600.00 600.00 886.68 2,550.00\nSales-PhilotimoConsulting 10,025.00 26,217.50 59,012.52 50,175.00\nSales-PhilotimoGroup 84,933.32 80,678.60 53,525.00 365,899.11\nTotalIncome 95,558.32 107,496.10 113,424.20 418,624.11\nLessCostofSales\nConsulting-BusinessDevelopment 13,625.00 - - 37,175.00\nTotalLessCostofSales 13,625.00 - - 37,175.00\nGrossProfit 81,933.32 107,496.10 113,424.20 381,449.11\nPlusOtherIncome\nInterest-ATO (2,473.03) - - (2,473.03)\nInterest-Bank - (1,130.05) 82.25 87.99\nTotalPlusOtherIncome (2,473.03) (1,130.05) 82.25 (2,385.04)\nLessOperatingExpenses\nAccountingFees - 2,585.00 2,585.00 8,250.00\nAdvertising,Marketing&BusinessDevelopment 454.42 2,659.35 3,789.05 4,452.24\nBankFees 61.19 195.44 14.94 2,270.96\nCleaning 830.00 - 1,430.00 3,018.50\nComputerExpenses - 756.73 796.12 -\nComputerSoftware 110.41 106.11 - 446.12\nConsulting-R&D - - - 4,000.00\nDepreciation - 1,297.33 1,297.67 -\nDonations - - - 100.00\nEntertainment/BusinessDevelopment 41.90 - 28.64 1,955.83\nEquipmentHire 288.04 288.04 576.08 1,152.16\nFilingFees - - - 658.00\nForeignCurrencyGainsandLosses - - - 2.81\nInsurance 286.27 288.80 277.88 1,147.61\nInterestExpense 1,116.82 - 1,226.52 4,581.22\nMembership 1,760.00 - - 1,760.00\nMerchantFees-Stripe 2,868.67 2,401.40 2,902.32 12,058.98\nMerchantFees-Pay.aufees - (96.08) - -\nMinorAssetPurchases 105.46 36.27 - 159.05\nMotorVehicleExpenses - - - 90.91\nOfficeExpenses - - - 8.45\nParking&Tolls 109.10 163.65 110.00 457.55\nPayrollTax - - - 11,775.75\nPrinting&Stationery 53.48 3.98 60.10 236.16\nRecruitment - - 2,078.53 -\nProfit&Loss PhilotimoGlobal 30Oct2025 Page1of2\n--- PAGE 2 ---\nProfitandLoss\nOCT2025 OCT2024 OCT2023 YEARTODATE\nRent 10,307.58 9,630.73 9,166.67 45,554.82\nRepairsandMaintenance - - - 94.86\nResearchandProductDevelopment 3,000.00 - - 7,000.00\nStaffAmenities 712.75 648.44 35.15 2,399.85\nStaffTraining - - - 1,000.00\nSubscriptions 3,871.07 7,494.43 2,713.40 35,780.85\nSundryExpenses - - - 409.86\nSuperannuation 8,780.86 13,359.72 11,023.47 39,513.87\nTelephone&Internet - 820.72 421.72 399.00\nTravel-National 290.54 27.59 217.27 1,611.54\nUtilities 735.25 579.69 - 3,020.34\nWagesandSalaries 74,188.10 116,171.72 100,213.06 333,846.44\nWebhostingandEmail - - - 656.37\nTotalLessOperatingExpenses 109,971.91 159,419.06 140,963.59 529,870.10\nOperatingProfit (30,511.62) (53,053.01) (27,457.14) (150,806.03)\nNetProfit (30,511.62) (53,053.01) (27,457.14) (150,806.03)\nProfit&Loss PhilotimoGlobal 30Oct2025 Page2of2",
+            "pages_data": [
+              {
+                "bbox": [
+                  0,
+                  0.0,
+                  595.238,
+                  841.836
+                ],
+                "text": "Profit and Loss\nPhilotimoGlobal\nForthemonthended31October2025\nOCT2025 OCT2024 OCT2023 YEARTODATE\nIncome\nMentoring 600.00 600.00 886.68 2,550.00\nSales-PhilotimoConsulting 10,025.00 26,217.50 59,012.52 50,175.00\nSales-PhilotimoGroup 84,933.32 80,678.60 53,525.00 365,899.11\nTotalIncome 95,558.32 107,496.10 113,424.20 418,624.11\nLessCostofSales\nConsulting-BusinessDevelopment 13,625.00 - - 37,175.00\nTotalLessCostofSales 13,625.00 - - 37,175.00\nGrossProfit 81,933.32 107,496.10 113,424.20 381,449.11\nPlusOtherIncome\nInterest-ATO (2,473.03) - - (2,473.03)\nInterest-Bank - (1,130.05) 82.25 87.99\nTotalPlusOtherIncome (2,473.03) (1,130.05) 82.25 (2,385.04)\nLessOperatingExpenses\nAccountingFees - 2,585.00 2,585.00 8,250.00\nAdvertising,Marketing&BusinessDevelopment 454.42 2,659.35 3,789.05 4,452.24\nBankFees 61.19 195.44 14.94 2,270.96\nCleaning 830.00 - 1,430.00 3,018.50\nComputerExpenses - 756.73 796.12 -\nComputerSoftware 110.41 106.11 - 446.12\nConsulting-R&D - - - 4,000.00\nDepreciation - 1,297.33 1,297.67 -\nDonations - - - 100.00\nEntertainment/BusinessDevelopment 41.90 - 28.64 1,955.83\nEquipmentHire 288.04 288.04 576.08 1,152.16\nFilingFees - - - 658.00\nForeignCurrencyGainsandLosses - - - 2.81\nInsurance 286.27 288.80 277.88 1,147.61\nInterestExpense 1,116.82 - 1,226.52 4,581.22\nMembership 1,760.00 - - 1,760.00\nMerchantFees-Stripe 2,868.67 2,401.40 2,902.32 12,058.98\nMerchantFees-Pay.aufees - (96.08) - -\nMinorAssetPurchases 105.46 36.27 - 159.05\nMotorVehicleExpenses - - - 90.91\nOfficeExpenses - - - 8.45\nParking&Tolls 109.10 163.65 110.00 457.55\nPayrollTax - - - 11,775.75\nPrinting&Stationery 53.48 3.98 60.10 236.16\nRecruitment - - 2,078.53 -\nProfit&Loss PhilotimoGlobal 30Oct2025 Page1of2",
+                "rotation": 0,
+                "page_number": 1,
+                "words_count": 192,
+                "tables_count": 0
+              },
+              {
+                "bbox": [
+                  0,
+                  0.0,
+                  595.238,
+                  841.836
+                ],
+                "text": "ProfitandLoss\nOCT2025 OCT2024 OCT2023 YEARTODATE\nRent 10,307.58 9,630.73 9,166.67 45,554.82\nRepairsandMaintenance - - - 94.86\nResearchandProductDevelopment 3,000.00 - - 7,000.00\nStaffAmenities 712.75 648.44 35.15 2,399.85\nStaffTraining - - - 1,000.00\nSubscriptions 3,871.07 7,494.43 2,713.40 35,780.85\nSundryExpenses - - - 409.86\nSuperannuation 8,780.86 13,359.72 11,023.47 39,513.87\nTelephone&Internet - 820.72 421.72 399.00\nTravel-National 290.54 27.59 217.27 1,611.54\nUtilities 735.25 579.69 - 3,020.34\nWagesandSalaries 74,188.10 116,171.72 100,213.06 333,846.44\nWebhostingandEmail - - - 656.37\nTotalLessOperatingExpenses 109,971.91 159,419.06 140,963.59 529,870.10\nOperatingProfit (30,511.62) (53,053.01) (27,457.14) (150,806.03)\nNetProfit (30,511.62) (53,053.01) (27,457.14) (150,806.03)\nProfit&Loss PhilotimoGlobal 30Oct2025 Page2of2",
+                "rotation": 0,
+                "page_number": 2,
+                "words_count": 89,
+                "tables_count": 0
+              }
+            ],
+            "document_info": {
+              "filename": "extract_1768882530_Philotimo_Global_-_Profit___Loss",
+              "total_pages": 0,
+              "total_words": 289,
+              "total_characters": 2566,
+              "extraction_methods_used": 4,
+              "primary_extraction_method": "pdfplumber"
+            },
+            "extraction_quality": {
+              "methods_used": 4,
+              "tables_found": 0,
+              "primary_method": "pdfplumber",
+              "text_extracted": true
+            },
+            "financial_sections": {
+              "net": [
+                "Telephone&Internet - 820.72 421.72 399.00",
+                "NetProfit (30,511.62) (53,053.01) (27,457.14) (150,806.03)"
+              ],
+              "cost": [
+                "LessCostofSales",
+                "TotalLessCostofSales 13,625.00 - - 37,175.00"
+              ],
+              "loss": [
+                "Profit and Loss",
+                "ForeignCurrencyGainsandLosses - - - 2.81",
+                "Profit&Loss PhilotimoGlobal 30Oct2025 Page1of2",
+                "ProfitandLoss",
+                "Profit&Loss PhilotimoGlobal 30Oct2025 Page2of2"
+              ],
+              "asset": [
+                "MinorAssetPurchases 105.46 36.27 - 159.05"
+              ],
+              "gross": [
+                "GrossProfit 81,933.32 107,496.10 113,424.20 381,449.11"
+              ],
+              "sales": [
+                "Sales-PhilotimoConsulting 10,025.00 26,217.50 59,012.52 50,175.00",
+                "Sales-PhilotimoGroup 84,933.32 80,678.60 53,525.00 365,899.11",
+                "LessCostofSales",
+                "TotalLessCostofSales 13,625.00 - - 37,175.00"
+              ],
+              "total": [
+                "TotalIncome 95,558.32 107,496.10 113,424.20 418,624.11",
+                "TotalLessCostofSales 13,625.00 - - 37,175.00",
+                "TotalPlusOtherIncome (2,473.03) (1,130.05) 82.25 (2,385.04)",
+                "TotalLessOperatingExpenses 109,971.91 159,419.06 140,963.59 529,870.10"
+              ],
+              "income": [
+                "Income",
+                "TotalIncome 95,558.32 107,496.10 113,424.20 418,624.11",
+                "PlusOtherIncome",
+                "TotalPlusOtherIncome (2,473.03) (1,130.05) 82.25 (2,385.04)"
+              ],
+              "profit": [
+                "Profit and Loss",
+                "GrossProfit 81,933.32 107,496.10 113,424.20 381,449.11",
+                "Profit&Loss PhilotimoGlobal 30Oct2025 Page1of2",
+                "ProfitandLoss",
+                "OperatingProfit (30,511.62) (53,053.01) (27,457.14) (150,806.03)",
+                "NetProfit (30,511.62) (53,053.01) (27,457.14) (150,806.03)",
+                "Profit&Loss PhilotimoGlobal 30Oct2025 Page2of2"
+              ],
+              "account": [
+                "AccountingFees - 2,585.00 2,585.00 8,250.00"
+              ],
+              "expense": [
+                "LessOperatingExpenses",
+                "ComputerExpenses - 756.73 796.12 -",
+                "InterestExpense 1,116.82 - 1,226.52 4,581.22",
+                "MotorVehicleExpenses - - - 90.91",
+                "OfficeExpenses - - - 8.45",
+                "SundryExpenses - - - 409.86",
+                "TotalLessOperatingExpenses 109,971.91 159,419.06 140,963.59 529,870.10"
+              ],
+              "operating": [
+                "LessOperatingExpenses",
+                "TotalLessOperatingExpenses 109,971.91 159,419.06 140,963.59 529,870.10",
+                "OperatingProfit (30,511.62) (53,053.01) (27,457.14) (150,806.03)"
+              ]
+            }
+          }
+        },
+        "gemini_analysis": {
+          "red_flags": [
+            "Sustained and Deepening Losses: The company is burning a significant amount of cash with no clear path to profitability shown in the data.",
+            "Declining Year-Over-Year Revenue: Comparing the same month across three years shows a consistent downward trend in income.",
+            "Extremely High Payroll Costs: 'Wages and Salaries' plus 'Superannuation' total over $373k YTD against a Gross Profit of $381k, leaving almost nothing to cover all other operating expenses.",
+            "Negative 'Interest-ATO' Income: This suggests a potential tax liability or penalty from the Australian Taxation Office, which could indicate compliance or cash flow issues."
+          ],
+          "strengths": [
+            "Generates substantial top-line revenue, with YTD Total Income reaching $418,624.11.",
+            "Diversified income streams from Mentoring, Consulting, and Group sales.",
+            "Demonstrated ability to reduce certain operating expenses month-over-month, such as the significant drop in 'Wages and Salaries' from Oct 2024 to Oct 2025."
+          ],
+          "key_insights": [
+            "The business is consistently unprofitable, with a significant Year-To-Date (YTD) Net Loss of -$150,806.03.",
+            "October's performance has worsened over the last three years, with Total Income declining from $113.4k in Oct 2023 to $95.6k in Oct 2025.",
+            "Operating Expenses, particularly 'Wages and Salaries' and 'Superannuation', are unsustainably high, consuming approximately 89% of YTD Total Income.",
+            "A new, substantial 'Cost of Sales' item appeared in 2025, eroding the Gross Profit margin which was previously 100%.",
+            "While Operating Expenses were lower in Oct 2025 compared to Oct 2024, this reduction was insufficient to offset the decline in revenue and new cost of sales, resulting in a continued net loss."
+          ],
+          "recommendations": {
+            "immediate": [
+              "Conduct an emergency review of all operating expenses, focusing on the largest categories: 'Wages and Salaries', 'Subscriptions' ($35.8k YTD), and 'Rent' ($45.6k YTD). Implement immediate cuts where possible.",
+              "Investigate the sharp decline in 'Sales-PhilotimoConsulting' revenue and create a plan to recover this income stream.",
+              "Analyze the ROI of the 'Consulting-Business Development' cost. Pause this spending if it is not generating immediate, profitable returns.",
+              "Contact the Australian Taxation Office (ATO) to understand and resolve the liability causing the 'Interest-ATO' charge."
+            ],
+            "strategic": [
+              "Re-evaluate the fundamental business model. The current cost structure is not supported by existing revenue streams.",
+              "Explore opportunities for higher-margin revenue streams or pivot the business towards its most profitable activities.",
+              "Consider long-term options for reducing fixed costs, such as moving to a smaller office or a fully remote work model to eliminate rent.",
+              "Develop a long-term strategy for sustainable growth that does not rely on spending that outpaces revenue."
+            ],
+            "medium_term": [
+              "Develop a comprehensive 2026 budget with a clear and aggressive path to profitability. This must include specific revenue targets and strict expense caps.",
+              "Restructure the workforce to align payroll costs with revenue. This may involve reducing headcount, freezing salaries, or transitioning roles to part-time or contract.",
+              "Perform a complete audit of all software 'Subscriptions' and cancel any non-essential services.",
+              "Review pricing for all services to identify opportunities for margin improvement."
+            ]
+          },
+          "analysis_metadata": {
+            "user_id": "499",
+            "category": "profit_loss",
+            "api_model": "gemini-2.5-pro",
+            "analysis_time": 28.64539074897766,
+            "business_name": "Unknown Business",
+            "temperature_used": 0.2,
+            "analysis_timestamp": "2026-01-20T15:16:00.389395"
+          },
+          "category_analysis": {
+            "trends": [
+              "A negative revenue trend is evident when comparing October figures year-over-year.",
+              "A new trend of incurring Cost of Sales has emerged in 2025, which has started to compress Gross Margins.",
+              "There is a positive trend of reducing some operating expenses like 'Wages and Salaries' in the most recent month, but it's not enough to change the overall negative financial trajectory."
+            ],
+            "benchmarking": {
+              "net_profit_margin": "Deeply negative at -36% for YTD. This is unsustainable and far below any industry benchmark for a healthy company.",
+              "payroll_to_revenue_ratio": "Extremely high at approximately 89% of YTD Total Income. A healthy ratio for a service business is typically in the 30-50% range, indicating severe overstaffing or underperformance."
+            },
+            "specific_insights": [
+              "The business's primary revenue driver is 'Sales-PhilotimoGroup', but its secondary stream, 'Sales-PhilotimoConsulting', has collapsed in the most recent period.",
+              "Payroll is the single largest expense category, representing a critical financial vulnerability.",
+              "The company invests heavily in 'Subscriptions', which may indicate a reliance on numerous software tools that could be consolidated or optimized."
+            ]
+          },
+          "improvement_areas": [
+            "Overall Profitability: The core business model is not profitable. Expenses massively outweigh income.",
+            "Cost Control: Operating expenses are too high relative to revenue. Key areas for review are payroll, subscriptions, and rent.",
+            "Revenue Growth and Stability: The declining trend in monthly revenue (comparing Octobers) needs to be reversed.",
+            "Gross Margin Management: The introduction of Cost of Sales needs to be managed to ensure it delivers a proportional increase in profitable revenue."
+          ],
+          "financial_health_score": 15,
+          "financial_opportunities": {
+            "cost_reduction": [
+              "Audit the $35,780.85 in YTD 'Subscriptions' to eliminate redundant or low-value services.",
+              "Renegotiate the office lease or explore subletting options to reduce the $45,554.82 YTD 'Rent' expense.",
+              "Review the activities driving 'Wages and Salaries' to identify inefficiencies that could be solved with automation, potentially reducing headcount needs."
+            ],
+            "efficiency_gains": [
+              "Analyze payment processing methods to see if 'Merchant Fees' ($12,058.98 YTD) can be reduced by negotiating rates with Stripe or encouraging clients to use lower-cost payment options like bank transfers.",
+              "Implement project management or CRM software to streamline operations, improving staff efficiency and potentially reducing the need for a large administrative team."
+            ],
+            "revenue_enhancement": [
+              "Launch a targeted sales and marketing campaign to revive the 'Sales-PhilotimoConsulting' revenue stream, which has historically been strong.",
+              "Develop bundled service offerings or tiered pricing to increase the average revenue per client from the 'Sales-PhilotimoGroup' segment.",
+              "Introduce a new, high-margin service or product that leverages existing expertise without significantly increasing fixed costs."
+            ]
+          }
+        },
+        "financial_ratios": {
+          "ratios_disabled": "Using Gemini analysis for financial insights"
+        },
+        "analysis_metadata": {
+          "blob_url": "https://backableunifiedstoragev1.blob.core.windows.net/unified-clients-prod/499-tkrotiris/financial%20documents/profit_loss/Philotimo_Global_-_Profit___Loss.pdf",
+          "category": "profit_loss",
+          "file_size": 26126,
+          "file_type": ".pdf",
+          "gemini_time": 28.645546436309814,
+          "ratios_time": 0,
+          "original_name": "Philotimo_Global_-_Profit___Loss.pdf",
+          "extraction_time": 1.0337586402893066,
+          "processing_time": 29.68452262878418,
+          "upload_timestamp": "2026-01-20T15:16:00.390778"
+        }
+      },
+      {
+        "id": 280,
+        "original_name": "Philotimo_Global_-_Balance_Sheet.pdf",
+        "category": "balance_sheet",
+        "extracted_data": {
+          "extraction_metadata": {
+            "source_file": "extract_1768882587_Philotimo_Global_-_Balance_Sheet.pdf",
+            "extraction_type": "financial_document",
+            "file_size_bytes": 26905,
+            "timing_breakdown": {
+              "total_time": 1.904883623123169
+            },
+            "extraction_engine": "manual_python_extraction",
+            "extraction_method": "comprehensive_pdf_extractor",
+            "processing_engine": "backable_finance_engine",
+            "extraction_timestamp": "2026-01-20T15:16:29.877027",
+            "extraction_time_seconds": 1.904883623123169
+          },
+          "extracted_financial_data": {
+            "tables": [],
+            "full_text": "--- PAGE 1 ---\nBalance Sheet\nPhilotimoGlobal\nAsat30October2025\n30OCT2025 30OCT2024 30OCT2023\nAssets\nBank\nNABBusiness#1662 107,045.79 8,273.54 9,806.99\nNABSavings#2163 48,873.17 54,014.03 86,657.21\nStripeAUD (6,707.69) 12,494.71 12,144.13\nTotalBank 149,211.27 74,782.28 108,608.33\nCurrentAssets\nAccountsReceivable 34,024.10 26,039.75 31,157.50\nCashonHand 100.00 100.00 100.00\nPrepayments - - 800.00\nTotalCurrentAssets 34,124.10 26,139.75 32,057.50\nFixedAssets\nComputerEquipment 43,385.11 29,115.10 19,135.53\nFurnitureandFittings 101,405.70 101,405.70 101,405.70\nLessAccumulatedDepreciationonComputerEquipment (18,254.04) (15,194.10) (13,674.78)\nLessAccumulatedDepreciationonFurnitureandFittings (80,742.68) (75,591.07) (66,979.86)\nLessAccumulatedDepreciationonMotorVehicle-ElectricScooter (1,421.81) (1,278.12) (1,037.91)\nLessAccumulatedDepreciationonOfficeEquipment (42,475.49) (40,004.01) (36,051.00)\nLessAccumulatedDepreciationonWebsite (1,471.04) (872.68) (72.13)\nMotorVehicle-ElectricScooter 1,998.18 1,998.18 1,998.18\nOfficeEquipment 55,543.50 55,543.50 55,543.50\nWebsite 4,000.00 4,000.00 4,000.00\nTotalFixedAssets 61,967.43 59,122.50 64,267.23\nNon-currentAssets\nAlexoGroupPtyLtd 896.00 896.00 896.00\nBackablePtyLtd (87,645.84) 16,672.51 11,162.41\nCapitalisedCosts 3,287.50 3,287.50 -\nRentalBond 12,616.44 12,616.44 12,616.44\nTHKDiscretionaryTrust2019 - 18,796.80 27,136.09\nTHKDiscretionaryTrust2020 43,486.98 84,098.67 109,714.86\nTHKDiscretionaryTrust2021 88,397.57 112,946.91 136,594.62\nTHKDiscretionaryTrust2022 41,833.61 50,272.34 58,147.89\nTHKDiscretionaryTrust2023 38,621.17 44,581.41 50,158.50\nTHKDiscretionaryTrust2024 66,815.43 58,184.26 17,156.89\nTHKDiscretionaryTrust2025 76,492.17 1,671.23 -\nTHKDiscretionaryTrust2026 50,329.00 - -\nTrademarks 10,803.41 10,803.41 10,803.41\nTotalNon-currentAssets 345,933.44 414,827.48 434,387.11\nTotalAssets 591,236.24 574,872.01 639,320.17\nLiabilities\nBalanceSheet PhilotimoGlobal 30Oct2025 Page1of2\n--- PAGE 2 ---\nBalanceSheet\n30OCT2025 30OCT2024 30OCT2023\nCurrentLiabilities\nAccountsPayable 52,371.21 61,055.98 21,546.62\nAMEXBusiness#7323 - - (2,453.75)\nAMEXPlatinum#1009 58,082.50 62,509.85 68,523.48\nBusinessEvolutionProgram 3,500.00 3,500.00 3,500.00\nClientDeposit-GolfSponsor - - 28,429.98\nClientDeposit-Retreat - - 54,937.75\nEmployeeLoan-NovatedLease (456.30) - -\nProvisionforIncomeTax - (158,989.96) (216,392.79)\nRounding 0.05 - -\nEmploymentLiabilities\nSuperannuationPayable 8,780.86 14,421.26 50,291.49\nWagesPayable-Payroll (4,326.42) - 9,167.06\nTotalEmploymentLiabilities 4,454.44 14,421.26 59,458.55\nTaxLiabilities\nATO-IntegratedClientAccount (603.09) 99,223.00 116,971.33\nGST 35,077.27 10,351.66 10,192.61\nPAYGWithholdingsPayable 45,338.00 12,902.00 35,670.00\nTotalTaxLiabilities 79,812.18 122,476.66 162,833.94\nTotalCurrentLiabilities 197,764.08 104,973.79 180,383.78\nNon-CurrentLiabilities\nLoan-SMS 500.00 500.00 500.00\nTotalNon-CurrentLiabilities 500.00 500.00 500.00\nTotalLiabilities 198,264.08 105,473.79 180,883.78\nNetAssets 392,972.16 469,398.22 458,436.39\nEquity\nCurrentYearEarnings (150,806.03) (107,045.84) 20,648.64\nIssuedOrdinaryShares 100.00 100.00 100.00\nRetainedEarnings 543,678.19 576,344.06 437,687.75\nTotalEquity 392,972.16 469,398.22 458,436.39\nBalanceSheet PhilotimoGlobal 30Oct2025 Page2of2",
+            "pages_data": [
+              {
+                "bbox": [
+                  0,
+                  0.0,
+                  595.238,
+                  841.836
+                ],
+                "text": "Balance Sheet\nPhilotimoGlobal\nAsat30October2025\n30OCT2025 30OCT2024 30OCT2023\nAssets\nBank\nNABBusiness#1662 107,045.79 8,273.54 9,806.99\nNABSavings#2163 48,873.17 54,014.03 86,657.21\nStripeAUD (6,707.69) 12,494.71 12,144.13\nTotalBank 149,211.27 74,782.28 108,608.33\nCurrentAssets\nAccountsReceivable 34,024.10 26,039.75 31,157.50\nCashonHand 100.00 100.00 100.00\nPrepayments - - 800.00\nTotalCurrentAssets 34,124.10 26,139.75 32,057.50\nFixedAssets\nComputerEquipment 43,385.11 29,115.10 19,135.53\nFurnitureandFittings 101,405.70 101,405.70 101,405.70\nLessAccumulatedDepreciationonComputerEquipment (18,254.04) (15,194.10) (13,674.78)\nLessAccumulatedDepreciationonFurnitureandFittings (80,742.68) (75,591.07) (66,979.86)\nLessAccumulatedDepreciationonMotorVehicle-ElectricScooter (1,421.81) (1,278.12) (1,037.91)\nLessAccumulatedDepreciationonOfficeEquipment (42,475.49) (40,004.01) (36,051.00)\nLessAccumulatedDepreciationonWebsite (1,471.04) (872.68) (72.13)\nMotorVehicle-ElectricScooter 1,998.18 1,998.18 1,998.18\nOfficeEquipment 55,543.50 55,543.50 55,543.50\nWebsite 4,000.00 4,000.00 4,000.00\nTotalFixedAssets 61,967.43 59,122.50 64,267.23\nNon-currentAssets\nAlexoGroupPtyLtd 896.00 896.00 896.00\nBackablePtyLtd (87,645.84) 16,672.51 11,162.41\nCapitalisedCosts 3,287.50 3,287.50 -\nRentalBond 12,616.44 12,616.44 12,616.44\nTHKDiscretionaryTrust2019 - 18,796.80 27,136.09\nTHKDiscretionaryTrust2020 43,486.98 84,098.67 109,714.86\nTHKDiscretionaryTrust2021 88,397.57 112,946.91 136,594.62\nTHKDiscretionaryTrust2022 41,833.61 50,272.34 58,147.89\nTHKDiscretionaryTrust2023 38,621.17 44,581.41 50,158.50\nTHKDiscretionaryTrust2024 66,815.43 58,184.26 17,156.89\nTHKDiscretionaryTrust2025 76,492.17 1,671.23 -\nTHKDiscretionaryTrust2026 50,329.00 - -\nTrademarks 10,803.41 10,803.41 10,803.41\nTotalNon-currentAssets 345,933.44 414,827.48 434,387.11\nTotalAssets 591,236.24 574,872.01 639,320.17\nLiabilities\nBalanceSheet PhilotimoGlobal 30Oct2025 Page1of2",
+                "rotation": 0,
+                "page_number": 1,
+                "words_count": 153,
+                "tables_count": 0
+              },
+              {
+                "bbox": [
+                  0,
+                  0.0,
+                  595.238,
+                  841.836
+                ],
+                "text": "BalanceSheet\n30OCT2025 30OCT2024 30OCT2023\nCurrentLiabilities\nAccountsPayable 52,371.21 61,055.98 21,546.62\nAMEXBusiness#7323 - - (2,453.75)\nAMEXPlatinum#1009 58,082.50 62,509.85 68,523.48\nBusinessEvolutionProgram 3,500.00 3,500.00 3,500.00\nClientDeposit-GolfSponsor - - 28,429.98\nClientDeposit-Retreat - - 54,937.75\nEmployeeLoan-NovatedLease (456.30) - -\nProvisionforIncomeTax - (158,989.96) (216,392.79)\nRounding 0.05 - -\nEmploymentLiabilities\nSuperannuationPayable 8,780.86 14,421.26 50,291.49\nWagesPayable-Payroll (4,326.42) - 9,167.06\nTotalEmploymentLiabilities 4,454.44 14,421.26 59,458.55\nTaxLiabilities\nATO-IntegratedClientAccount (603.09) 99,223.00 116,971.33\nGST 35,077.27 10,351.66 10,192.61\nPAYGWithholdingsPayable 45,338.00 12,902.00 35,670.00\nTotalTaxLiabilities 79,812.18 122,476.66 162,833.94\nTotalCurrentLiabilities 197,764.08 104,973.79 180,383.78\nNon-CurrentLiabilities\nLoan-SMS 500.00 500.00 500.00\nTotalNon-CurrentLiabilities 500.00 500.00 500.00\nTotalLiabilities 198,264.08 105,473.79 180,883.78\nNetAssets 392,972.16 469,398.22 458,436.39\nEquity\nCurrentYearEarnings (150,806.03) (107,045.84) 20,648.64\nIssuedOrdinaryShares 100.00 100.00 100.00\nRetainedEarnings 543,678.19 576,344.06 437,687.75\nTotalEquity 392,972.16 469,398.22 458,436.39\nBalanceSheet PhilotimoGlobal 30Oct2025 Page2of2",
+                "rotation": 0,
+                "page_number": 2,
+                "words_count": 113,
+                "tables_count": 0
+              }
+            ],
+            "document_info": {
+              "filename": "extract_1768882587_Philotimo_Global_-_Balance_Sheet",
+              "total_pages": 0,
+              "total_words": 274,
+              "total_characters": 3275,
+              "extraction_methods_used": 4,
+              "primary_extraction_method": "pdfplumber"
+            },
+            "extraction_quality": {
+              "methods_used": 4,
+              "tables_found": 0,
+              "primary_method": "pdfplumber",
+              "text_extracted": true
+            },
+            "financial_sections": {
+              "net": [
+                "NetAssets 392,972.16 469,398.22 458,436.39"
+              ],
+              "cash": [
+                "CashonHand 100.00 100.00 100.00"
+              ],
+              "cost": [
+                "CapitalisedCosts 3,287.50 3,287.50 -"
+              ],
+              "asset": [
+                "Assets",
+                "CurrentAssets",
+                "TotalCurrentAssets 34,124.10 26,139.75 32,057.50",
+                "FixedAssets",
+                "TotalFixedAssets 61,967.43 59,122.50 64,267.23",
+                "Non-currentAssets",
+                "TotalNon-currentAssets 345,933.44 414,827.48 434,387.11",
+                "TotalAssets 591,236.24 574,872.01 639,320.17",
+                "NetAssets 392,972.16 469,398.22 458,436.39"
+              ],
+              "total": [
+                "TotalBank 149,211.27 74,782.28 108,608.33",
+                "TotalCurrentAssets 34,124.10 26,139.75 32,057.50",
+                "TotalFixedAssets 61,967.43 59,122.50 64,267.23",
+                "TotalNon-currentAssets 345,933.44 414,827.48 434,387.11",
+                "TotalAssets 591,236.24 574,872.01 639,320.17",
+                "TotalEmploymentLiabilities 4,454.44 14,421.26 59,458.55",
+                "TotalTaxLiabilities 79,812.18 122,476.66 162,833.94",
+                "TotalCurrentLiabilities 197,764.08 104,973.79 180,383.78",
+                "TotalNon-CurrentLiabilities 500.00 500.00 500.00",
+                "TotalLiabilities 198,264.08 105,473.79 180,883.78"
+              ],
+              "equity": [
+                "Equity",
+                "TotalEquity 392,972.16 469,398.22 458,436.39"
+              ],
+              "income": [
+                "ProvisionforIncomeTax - (158,989.96) (216,392.79)"
+              ],
+              "account": [
+                "AccountsReceivable 34,024.10 26,039.75 31,157.50",
+                "AccountsPayable 52,371.21 61,055.98 21,546.62",
+                "ATO-IntegratedClientAccount (603.09) 99,223.00 116,971.33"
+              ],
+              "balance": [
+                "Balance Sheet",
+                "BalanceSheet PhilotimoGlobal 30Oct2025 Page1of2",
+                "BalanceSheet",
+                "BalanceSheet PhilotimoGlobal 30Oct2025 Page2of2"
+              ],
+              "capital": [
+                "CapitalisedCosts 3,287.50 3,287.50 -"
+              ]
+            }
+          }
+        },
+        "gemini_analysis": {
+          "red_flags": [
+            "Consecutive Years of Losses: The shift from a profit of $20,648 in 2023 to substantial losses in 2024 and 2025 indicates a serious decline in business performance.",
+            "Critical Liquidity Risk: A current ratio of 0.17 is far below healthy levels (typically >1.5) and signals a high risk of default on short-term obligations.",
+            "Anomalous Asset Value: The non-current asset 'Backable Pty Ltd' has a negative value of -$87,645.84 in 2025. This is highly irregular for an asset and may indicate a misclassified liability or a significant write-down.",
+            "Complex Inter-entity Balances: The numerous 'THK Discretionary Trust' accounts with large, fluctuating balances suggest complex related-party transactions that could obscure the company's true, standalone financial health."
+          ],
+          "strengths": [
+            "The company remains solvent with a positive net asset position of $392,972.16 in 2025.",
+            "Cash and bank balances have significantly improved, doubling from $74,782 in 2024 to $149,211 in 2025, providing some operational cash.",
+            "Long-term debt is negligible ($500), meaning there is minimal pressure from long-term creditors."
+          ],
+          "key_insights": [
+            "The business has incurred significant and growing losses for two consecutive years, with Current Year Earnings of -$150,806 in 2025 and -$107,046 in 2024.",
+            "There is a severe liquidity crisis, evidenced by a critically low current ratio of 0.17 in 2025 and a negative working capital of -$163,640, indicating an inability to cover short-term liabilities with short-term assets.",
+            "Total Equity has declined by over 16% from $469k in 2024 to $393k in 2025, directly caused by the operational losses eroding retained earnings.",
+            "The company's reliance on short-term debt has increased dramatically, with the Debt-to-Equity ratio more than doubling from 0.22 in 2024 to 0.50 in 2025."
+          ],
+          "recommendations": {
+            "immediate": [
+              "Secure immediate short-term financing (e.g., line of credit) or inject shareholder capital to cover the $163k working capital shortfall and avoid defaulting on payments.",
+              "Conduct an urgent investigation into the negative asset value for 'Backable Pty Ltd' to correct the accounting and understand its financial implications.",
+              "Implement an aggressive collections strategy for the $34,024 in Accounts Receivable.",
+              "Contact major suppliers to negotiate extended payment terms for the $52,371 in Accounts Payable."
+            ],
+            "strategic": [
+              "Re-evaluate the core business model to ensure a viable path to long-term, sustainable profitability.",
+              "Simplify the corporate and investment structure by reviewing the purpose and performance of the various trust investments.",
+              "Establish a formal capital management plan to guide future financing and investment decisions."
+            ],
+            "medium_term": [
+              "Perform a comprehensive operational review to identify the root causes of unprofitability and execute a cost-reduction plan.",
+              "Develop and implement a sales and marketing strategy to increase revenue and return to profitability.",
+              "Explore options to restructure short-term liabilities, such as the $58,082 AMEX balance, into a longer-term loan to alleviate immediate cash flow pressure."
+            ]
+          },
+          "analysis_metadata": {
+            "user_id": "499",
+            "category": "balance_sheet",
+            "api_model": "gemini-2.5-pro",
+            "analysis_time": 38.900514364242554,
+            "business_name": "Unknown Business",
+            "temperature_used": 0.2,
+            "analysis_timestamp": "2026-01-20T15:17:08.783606"
+          },
+          "category_analysis": {
+            "trends": [
+              "Profitability Trend: Negative (Profit in 2023 -> Increasing Losses in 2024-2025)",
+              "Liquidity Trend: Negative (Current Ratio and Working Capital are deteriorating)",
+              "Solvency Trend: Negative (Debt-to-Equity ratio is increasing, and Net Assets are decreasing)"
+            ],
+            "benchmarking": {
+              "Current Ratio (2025)": "0.17 (Critically Low)",
+              "Working Capital (2025)": "-$163,639.98 (Severe Deficit)",
+              "Debt-to-Equity Ratio (2025)": "0.50 (Acceptable, but trend is negative)"
+            },
+            "specific_insights": [
+              "Asset Quality: 58% of total assets are non-current, primarily investments in related trusts. The liquidity and return on these assets are uncertain and may not be contributing effectively to the core business.",
+              "Liability Risk: The liability structure is extremely risky, with 99.7% of all liabilities due within the next year. This places immense pressure on the company's short-term cash flow.",
+              "Equity Erosion: The company's equity base is being depleted by operational losses, reducing its financial cushion and capacity to absorb future shocks."
+            ]
+          },
+          "improvement_areas": [
+            "Profitability: The core operations are unprofitable and the trend is worsening. A fundamental review of revenue and cost structures is required.",
+            "Liquidity Management: Urgent action is needed to manage the severe working capital deficit and improve the company's ability to meet its immediate financial obligations.",
+            "Liability Structure: The overwhelming concentration of liabilities in the short-term (99.7% of total liabilities) creates significant financial risk and cash flow pressure.",
+            "Asset Management: The nature and performance of the large, complex non-current assets (investments in various trusts) need to be evaluated for their contribution to the business."
+          ],
+          "financial_health_score": 35,
+          "financial_opportunities": {
+            "cost_reduction": [
+              "Given the significant losses, there is a high probability of identifying substantial cost savings through a detailed review of all operating expenses, supplier contracts, and overheads."
+            ],
+            "efficiency_gains": [
+              "Improve the cash conversion cycle by optimizing the management of accounts receivable and payable. Reducing the time to collect from customers while managing payments to suppliers can free up critical cash flow."
+            ],
+            "revenue_enhancement": [
+              "Analyze pricing strategies, customer segments, and service offerings to identify opportunities for revenue growth that can reverse the negative earnings trend."
+            ]
+          }
+        },
+        "financial_ratios": {
+          "ratios_disabled": "Using Gemini analysis for financial insights"
+        },
+        "analysis_metadata": {
+          "blob_url": "https://backableunifiedstoragev1.blob.core.windows.net/unified-clients-prod/499-tkrotiris/financial%20documents/balance_sheet/Philotimo_Global_-_Balance_Sheet.pdf",
+          "category": "balance_sheet",
+          "file_size": 26905,
+          "file_type": ".pdf",
+          "gemini_time": 38.90099549293518,
+          "ratios_time": 0,
+          "original_name": "Philotimo_Global_-_Balance_Sheet.pdf",
+          "extraction_time": 2.0653510093688965,
+          "processing_time": 40.97278428077698,
+          "upload_timestamp": "2026-01-20T15:17:08.786202"
+        }
+      }
+    ]
+  }
+}

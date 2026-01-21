@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "timestamp": "2026-01-21T11:34:13.263284",
+    "client_id": null,
+    "category": "system_logs",
+    "filename_prefix": "application_startup",
+    "data_type": "dict",
+    "additional_info": null,
+    "file_size_estimate": 194
+  },
+  "content": {
+    "event": "application_startup",
+    "storage_enabled": true,
+    "storage_path": "./local_backend_storage",
+    "detailed_logging": true,
+    "gemini_keys_count": 10,
+    "timestamp": "2026-01-21T11:34:13.262285"
+  }
+}

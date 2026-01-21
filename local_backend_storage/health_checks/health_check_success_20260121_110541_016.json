@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "timestamp": "2026-01-21T11:05:41.016913",
+    "client_id": null,
+    "category": "health_checks",
+    "filename_prefix": "health_check_success",
+    "data_type": "dict",
+    "additional_info": null,
+    "file_size_estimate": 221
+  },
+  "content": {
+    "endpoint": "/health",
+    "check_timestamp": "2026-01-21T11:05:40.829983",
+    "status": "healthy",
+    "check_duration_seconds": 0.185899,
+    "database_connection": "successful",
+    "document_count": 137,
+    "storage_directories_ok": true
+  }
+}

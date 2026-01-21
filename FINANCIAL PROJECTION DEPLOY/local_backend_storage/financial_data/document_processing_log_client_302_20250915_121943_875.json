@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "timestamp": "2025-09-15T12:19:43.875144",
+    "client_id": "302",
+    "category": "financial_data",
+    "filename_prefix": "document_processing_log",
+    "data_type": "dict",
+    "additional_info": null,
+    "file_size_estimate": 684
+  },
+  "content": {
+    "client_id": "302",
+    "total_documents": 2,
+    "processing_start": "2025-09-15T12:19:43.873142",
+    "documents_details": [
+      {
+        "index": 1,
+        "document_id": 244,
+        "original_name": "Swanson%20Surveying%20Pty%20Ltd%202025.pdf",
+        "category": "profit_loss",
+        "has_extracted_data": true,
+        "has_gemini_analysis": true,
+        "has_financial_ratios": true,
+        "has_analysis_metadata": true
+      },
+      {
+        "index": 2,
+        "document_id": 245,
+        "original_name": "Swanson%20Surveying%20Pty%20Ltd%202024.pdf",
+        "category": "balance_sheet",
+        "has_extracted_data": true,
+        "has_gemini_analysis": true,
+        "has_financial_ratios": true,
+        "has_analysis_metadata": true
+      }
+    ],
+    "processing_end": "2025-09-15T12:19:43.874144",
+    "combined_content_length": 309711
+  }
+}
