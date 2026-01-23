@@ -270,7 +270,7 @@ async def verify_jwt_token(authorization: str = Header(None)) -> Dict:
                     detail="Token has been revoked"
                 )
 
-            if result['expires_at'] and result['expires_at'] < datetime.now():
+            if result['expires_at'] and result['expires_at'] < datetime.now(datetime.timezone.utc):
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,
                     detail="Token has expired"
