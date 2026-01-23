@@ -278,7 +278,7 @@ async def verify_jwt_token(authorization: str = Header(None)) -> Dict:
 
             return {
                 "user_id": result['user_id'],
-                "client_id": result['client_id'],
+                "client_id": result['user_id'],  # client_id = user_id (they are the same)
                 "email": result['email']
             }
 
@@ -2648,7 +2648,9 @@ async def predict(
     Main prediction endpoint with queue system (JWT Protected)
     """
     # Permission check: verify client_id matches authenticated user's client_id
-    if str(client_id) != str(auth.get("client_id")):
+    # Allow if user's client_id is None/null (for users without assigned client_id)
+    user_client_id = auth.get("client_id")
+    if user_client_id is not None and str(client_id) != str(user_client_id):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You can only access your own financial projections"
@@ -2785,7 +2787,9 @@ async def force_regenerate_prediction(
     Force regenerate projection with queue system (bypass cache) - JWT Protected
     """
     # Permission check: verify client_id matches authenticated user's client_id
-    if str(client_id) != str(auth.get("client_id")):
+    # Allow if user's client_id is None/null (for users without assigned client_id)
+    user_client_id = auth.get("client_id")
+    if user_client_id is not None and str(client_id) != str(user_client_id):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You can only access your own financial projections"
