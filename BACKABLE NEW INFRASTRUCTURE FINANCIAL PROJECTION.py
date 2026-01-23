@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Depends, Header, status
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from google import genai
@@ -50,6 +50,8 @@ import traceback
 from pathlib import Path
 import sys
 import logging
+import jwt
+import hashlib
 
 def get_projection_start_date():
     """Get the start date for projections (next January from current date)"""
@@ -177,6 +179,129 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# JWT AUTHENTICATION CONFIGURATION
+# ═══════════════════════════════════════════════════════════════════════════════
+JWT_SECRET = os.getenv("JWT_SECRET", "philotimo-global-jwt-secret-2024!!")
+JWT_ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")
+
+# Philotimo database configuration for token validation
+PHILOTIMO_DB_CONFIG = {
+    "host": "philotimo-staging-db.postgres.database.azure.com",
+    "database": "philotimodb",
+    "user": "wchen",
+    "password": "DevPhilot2024!!",
+    "port": 5432,
+    "sslmode": "require"
+}
+
+def hash_token(token: str) -> str:
+    """Hash a JWT token using SHA256 for database comparison"""
+    return hashlib.sha256(token.encode()).hexdigest()
+
+async def verify_jwt_token(authorization: str = Header(None)) -> Dict:
+    """
+    Verify JWT token from Authorization header and validate against database
+    Returns user information if token is valid
+    """
+    if not authorization:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Missing authorization header"
+        )
+
+    # Extract Bearer token
+    try:
+        scheme, token = authorization.split()
+        if scheme.lower() != "bearer":
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid authentication scheme"
+            )
+    except ValueError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid authorization header format"
+        )
+
+    # Decode and validate JWT
+    try:
+        payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
+        jti = payload.get("jti")
+
+        if not jti:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid token: missing JTI"
+            )
+
+        # Hash the token for database lookup
+        token_hash = hash_token(token)
+
+        # Validate token against database
+        conn = psycopg2.connect(**PHILOTIMO_DB_CONFIG)
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+
+        try:
+            cursor.execute("""
+                SELECT
+                    t.user_id,
+                    t.is_revoked AS revoked,
+                    t.expires_at,
+                    u.client_id,
+                    u.email
+                FROM api_tokens t
+                JOIN users u ON t.user_id = u.id
+                WHERE t.jti = %s AND t.token_hash = %s
+            """, (jti, token_hash))
+
+            result = cursor.fetchone()
+
+            if not result:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Invalid token"
+                )
+
+            if result['revoked']:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Token has been revoked"
+                )
+
+            if result['expires_at'] and result['expires_at'] < datetime.now():
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Token has expired"
+                )
+
+            return {
+                "user_id": result['user_id'],
+                "client_id": result['client_id'],
+                "email": result['email']
+            }
+
+        finally:
+            cursor.close()
+            conn.close()
+
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Token has expired"
+        )
+    except jwt.InvalidTokenError as e:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail=f"Invalid token: {str(e)}"
+        )
+    except Exception as e:
+        logger.error(f"Token validation error: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Token validation failed"
+        )
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # LOCAL STORAGE CONFIGURATION - SAVES EVERYTHING IN CURRENT DIRECTORY
@@ -2515,12 +2640,20 @@ CONFIDENCE SCORING VALIDATION:
 
 @app.post("/predict")
 async def predict(
-    client_id: str = Query(..., description="Client ID to fetch financial documents from database")
+    client_id: str = Query(..., description="Client ID to fetch financial documents from database"),
+    auth: Dict = Depends(verify_jwt_token)
 ):
     """
-    Main prediction endpoint with queue system
+    Main prediction endpoint with queue system (JWT Protected)
     """
-    logger.info(f"🎯 PREDICT REQUEST: Client ID: {client_id}")
+    # Permission check: verify client_id matches authenticated user's client_id
+    if str(client_id) != str(auth.get("client_id")):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You can only access your own financial projections"
+        )
+
+    logger.info(f"🎯 PREDICT REQUEST: Client ID: {client_id} (User: {auth['user_id']})")
 
     # Check if request should be queued
     is_queued, queue_info = await queue_projection_request(
@@ -2643,11 +2776,21 @@ async def _force_regenerate_internal(client_id: str):
         raise HTTPException(status_code=500, detail=f"Force regeneration failed: {str(e)}")
 
 @app.post("/predict/force-regenerate", response_model=Union[EnhancedProjectionSchema, QueueResponseSchema])
-async def force_regenerate_prediction(client_id: str = Query(..., description="Client ID for financial analysis")):
+async def force_regenerate_prediction(
+    client_id: str = Query(..., description="Client ID for financial analysis"),
+    auth: Dict = Depends(verify_jwt_token)
+):
     """
-    Force regenerate projection with queue system (bypass cache)
+    Force regenerate projection with queue system (bypass cache) - JWT Protected
     """
-    logger.info(f"🔄 FORCE REGENERATE REQUEST: Client ID: {client_id}")
+    # Permission check: verify client_id matches authenticated user's client_id
+    if str(client_id) != str(auth.get("client_id")):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You can only access your own financial projections"
+        )
+
+    logger.info(f"🔄 FORCE REGENERATE REQUEST: Client ID: {client_id} (User: {auth['user_id']})")
 
     # Check if request should be queued
     is_queued, queue_info = await queue_projection_request(
@@ -2679,11 +2822,20 @@ async def force_regenerate_prediction(client_id: str = Query(..., description="C
         raise
 
 @app.get("/queue-status")
-async def get_queue_status(client_id: str = Query(None, description="Optional client ID to get specific queue info")):
+async def get_queue_status(
+    client_id: str = Query(None, description="Optional client ID to get specific queue info"),
+    auth: Dict = Depends(verify_jwt_token)
+):
     """
-    Get queue status - overall stats or specific client queue info
+    Get queue status - overall stats or specific client queue info (JWT Protected)
     """
     if client_id:
+        # Permission check: verify client_id matches authenticated user's client_id
+        if str(client_id) != str(auth.get("client_id")):
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="You can only check your own queue status"
+            )
         # Check if this specific client is processing or queued
         is_processing = (currently_processing_client == client_id)
 
@@ -2776,6 +2928,20 @@ VALIDATION: Before responding, verify revenue is NOT zero and matches actual bus
         logger.error(f"🧪 Test endpoint failed: {str(e)}")
         return {"error": str(e), "client_id": client_id}
 
+
+@app.get("/auth/me")
+async def get_authenticated_user(auth: Dict = Depends(verify_jwt_token)):
+    """
+    Get authenticated user information from JWT token
+    This endpoint allows the frontend to verify authentication and get user_id
+    """
+    return {
+        "status": "success",
+        "user_id": str(auth["user_id"]),
+        "client_id": auth.get("client_id"),
+        "email": auth.get("email"),
+        "authenticated": True
+    }
 
 @app.get("/health")
 async def health_check():
