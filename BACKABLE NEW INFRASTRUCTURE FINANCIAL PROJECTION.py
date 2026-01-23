@@ -297,10 +297,11 @@ async def verify_jwt_token(authorization: str = Header(None)) -> Dict:
             detail=f"Invalid token: {str(e)}"
         )
     except Exception as e:
-        logger.error(f"Token validation error: {str(e)}")
+        error_details = f"{type(e).__name__}: {str(e)}"
+        logger.error(f"Token validation error: {error_details}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Token validation failed"
+            detail=f"Token validation failed: {error_details}"
         )
 
 # ═══════════════════════════════════════════════════════════════════════════════
