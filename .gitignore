@@ -79,3 +79,6 @@ deployment-creds.xml
 projection_storage/
 local_data/
 cache/
+env-settings.json
+local_backend_storage/
+*.zip
